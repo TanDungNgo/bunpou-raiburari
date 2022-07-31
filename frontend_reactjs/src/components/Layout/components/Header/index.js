@@ -22,6 +22,8 @@ import { Wrapper as PopperWrapper } from "~/components/Popper";
 import KanjiItem from "~/components/KanjiItem";
 import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
+import { UploadIcon } from "~/components/Icons";
+import Image from "~/components/Image";
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -121,7 +123,8 @@ function Header() {
             <>
               <Tippy delay={[0, 200]} content="Upload" placement="bottom">
                 <button className={cx("action-btn")}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  {/* <FontAwesomeIcon icon={faCloudUpload} /> */}
+                  <UploadIcon />
                 </button>
               </Tippy>
             </>
@@ -138,10 +141,11 @@ function Header() {
             onChange={handleMenuChange}
           >
             {currentUser ? (
-              <img
+              <Image
                 src="https://allimages.sgp1.digitaloceanspaces.com/iteavn/2020/04/hinh-nen-may-tinh-11.jpg"
                 className={cx("user-avatar")}
-                alt=""
+                alt="avatar"
+                fallback="img/user.png"
               />
             ) : (
               <button className={cx("more-btn")}>
