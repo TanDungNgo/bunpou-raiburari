@@ -20,7 +20,20 @@ const cx = classNames.bind(styles);
 const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faLanguage} />,
-    title: "Languages",
+    title: "English",
+    children: {
+      title: "Languages",
+      data: [
+        {
+          code: "en",
+          title: "English",
+        },
+        {
+          code: "vi",
+          title: "Tiếng Việt",
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faComments} />,
@@ -31,6 +44,11 @@ const MENU_ITEMS = [
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {}, []);
+
+  // Handle logic
+  const handleMenuChange = (menuItem) => {
+    console.log(menuItem);
+  };
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
@@ -70,7 +88,7 @@ function Header() {
             Log in
           </Button>
 
-          <Menu items={MENU_ITEMS}>
+          <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cx("more-btn")}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>

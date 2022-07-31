@@ -5,13 +5,36 @@
   }
 }
 
+// Menu items
 .menu-item {
   border-radius: 0;
   width: 100%;
   justify-content: flex-start;
   font-weight: 500;
+  line-height: 1.8rem;
   padding: 11px 16px;
   &:hover {
     background-color: rgba(22, 24, 35, 0.03);
   }
+}
+
+// Header
+
+.header {
+  position: relative;
+  height: 50px;
+}
+
+.back-btn {
+  width: 50px;
+  height: 100%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
