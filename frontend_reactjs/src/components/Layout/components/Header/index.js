@@ -24,6 +24,7 @@ import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
 import { UploadIcon } from "~/components/Icons";
 import Image from "~/components/Image";
+import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -88,7 +89,10 @@ function Header() {
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
-        <img className={cx("logo")} src="img/logo2.png" alt="logo" />
+        <Link to="/">
+          <img className={cx("logo")} src="img/logo2.png" alt="logo" />
+        </Link>
+
         <HeadlessTippy
           interactive
           visible={searchResult.length > 0}

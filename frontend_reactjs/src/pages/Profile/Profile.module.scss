@@ -1,0 +1,48 @@
+.wrapper {
+  background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-company-profile-background-material-image_131613.jpg");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+input[type="text"] {
+  width: 350px;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  display: flex;
+  justify-content: center;
+}
+
+input[type="text"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.icon {
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+}
+
+.item {
+  font-size: 2rem;
+  padding: 4px 12px;
+  margin-left: 100px;
+}
+.btn {
+  margin-inline-start: 500px;
+}
+.user-avatar {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 250px;
+}
