@@ -25,6 +25,11 @@
 .title + .icon {
   margin-left: 8px;
 }
+.icon {
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+}
 
 // Button types
 .text {
@@ -62,7 +67,7 @@
   &:hover {
     border-color: currentColor;
     // background-color: rgba(254, 44, 85, 0.06);
-    background-color: rgba(0, 152, 255, 0.1)
+    background-color: rgba(0, 152, 255, 0.1);
   }
 }
 
