@@ -1,6 +1,5 @@
 .wrapper {
-  background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190619/ourmid/pngtree-company-profile-background-material-image_131613.jpg");
-
+  background-image: url("../../../public/img/profile_bg.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -40,8 +39,8 @@ input[type="text"]:focus {
   margin-inline-start: 500px;
 }
 .user-avatar {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 50%;
   margin-left: 250px;
