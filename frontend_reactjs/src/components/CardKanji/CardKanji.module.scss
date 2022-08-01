@@ -1,0 +1,27 @@
+.card {
+  width: 250;
+  overflow: hidden;
+  box-shadow: 0 2px 20px #e1e5ee;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 16px;
+  transition: transform 200ms ease-in;
+  &__image {
+    border-radius: 1rem;
+    height: 10rem;
+    width: 100%;
+    object-fit: cover;
+  }
+  &__title {
+    padding: 1rem;
+  }
+  &__description {
+    padding: 0 1rem;
+  }
+  &:hover {
+    transform: scale(1.02);
+  }
+}

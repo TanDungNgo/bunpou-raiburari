@@ -1,4 +1,13 @@
-function Home () {
-    return <h2>Home page</h2>
+import classNames from "classnames/bind";
+import styles from "./Home.module.scss";
+
+const cx = classNames.bind(styles);
+
+function Home() {
+  return (
+    <div>
+      <h2>Home page</h2>
+    </div>
+  );
 }
 export default Home;

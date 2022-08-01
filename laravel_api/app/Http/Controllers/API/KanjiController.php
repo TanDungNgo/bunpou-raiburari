@@ -11,10 +11,10 @@ class KanjiController extends Controller
 {
     public function index()
     {
-        $list_kanji = Kanji::all();
+        $listKanji = Kanji::all();
         return response()->json([
             'status' => 200,
-            'list_kanji' => $list_kanji,
+            'listKanji' => $listKanji,
         ]);
     }
 }

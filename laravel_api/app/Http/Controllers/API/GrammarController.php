@@ -11,10 +11,10 @@ class GrammarController extends Controller
 {
     public function index()
     {
-        $list_grammar = Grammar::all();
+        $listGrammar = Grammar::all();
         return response()->json([
             'status' => 200,
-            'list_kanji' => $list_grammar,
+            'listGrammar' => $listGrammar,
         ]);
     }
 }
