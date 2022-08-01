@@ -23,12 +23,20 @@ function Profile() {
         <div className={cx("item")}>
           <FontAwesomeIcon className={cx("icon")} icon={faUser} />
           <label>Username</label>
-          <input type="text" defaultValue={userLogin.username} />
+          <input
+            type="text"
+            className={cx("input")}
+            defaultValue={userLogin.username}
+          />
         </div>
         <div className={cx("item")}>
           <FontAwesomeIcon className={cx("icon")} icon={faEnvelope} />
           <label>Email</label>
-          <input type="text" defaultValue={userLogin.email} />
+          <input
+            type="text"
+            className={cx("input")}
+            defaultValue={userLogin.email}
+          />
         </div>
         <div>
           <Button outline className={cx("btn")}>

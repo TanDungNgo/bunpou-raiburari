@@ -9,21 +9,6 @@
   padding-bottom: 16px;
 }
 
-input[type="text"] {
-  width: 350px;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-  display: flex;
-  justify-content: center;
-}
-
-input[type="text"]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
 .icon {
   display: inline-block;
   width: 24px;
@@ -34,6 +19,19 @@ input[type="text"]:focus {
   font-size: 2rem;
   padding: 4px 12px;
   margin-left: 100px;
+}
+.input {
+  width: 350px;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  display: flex;
+
+  &:focus {
+    background-color: #ddd;
+    outline: none;
+  }
 }
 .btn {
   margin-inline-start: 500px;

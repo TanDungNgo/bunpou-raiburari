@@ -25,6 +25,7 @@ import Menu from "~/components/Popper/Menu";
 import { UploadIcon } from "~/components/Icons";
 import Image from "~/components/Image";
 import { Link } from "react-router-dom";
+import Search from "../Search";
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -92,36 +93,7 @@ function Header() {
         <Link to="/">
           <img className={cx("logo")} src="img/logo2.png" alt="logo" />
         </Link>
-
-        <HeadlessTippy
-          interactive
-          visible={searchResult.length > 0}
-          render={(attrs) => (
-            <div className={cx("search-result")} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                <h4 className={cx("search-title")}>
-                  Kanji
-                  <KanjiItem />
-                  <KanjiItem />
-                  <KanjiItem />
-                </h4>
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx("search")}>
-            <input type="text" placeholder="Search" spellCheck={false}></input>
-            {/* <button className={cx("clear")}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-            </button>
-            <FontAwesomeIcon className={cx("loading")} icon={faSpinner} /> */}
-            <HeadlessTippy>
-              <button className={cx("search-btn")}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-            </HeadlessTippy>
-          </div>
-        </HeadlessTippy>
+        <Search />
         <div className={cx("actions")}>
           {currentUser ? (
             <>
