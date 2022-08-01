@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\API\GrammarController;
+use App\Http\Controllers\API\KanjiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// Kanji
+Route::get('/list-kanji', [KanjiController::class, 'index']);
+
+// Grammar
+Route::get('/list-grammar', [GrammarController::class, 'index']);
