@@ -57,6 +57,19 @@
   cursor: pointer;
 }
 
+.loading {
+  animation: spinner 1s linear;
+}
+
+@keyframes spinner {
+  from {
+    transform: translateY(-50%) rotate(0);
+  }
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
 .search-btn {
   display: flex;
   align-items: center;

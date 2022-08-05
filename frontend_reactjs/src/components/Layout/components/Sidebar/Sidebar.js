@@ -14,7 +14,7 @@ function Sidebar() {
           Home
         </Button>
       </Link>
-      <Link to="/kanji">
+      <Link to="/listkanji">
         <Button outline large>
           Kanji
         </Button>

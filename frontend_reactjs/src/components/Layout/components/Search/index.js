@@ -16,10 +16,26 @@ function Search() {
   const [searchValue, setSearchValue] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const inputRef = useRef();
-  useEffect(() => {}, []);
-
+  useEffect(() => {
+    if (!searchValue.trim()) {
+      setSearchResult([]);
+      return;
+    }
+    setLoading(true);
+    fetch(`http://127.0.0.1:8000/api/search/q=${searchValue}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setSearchResult(res.listKanji);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, [searchValue]);
+  console.log(searchResult);
   const handleClear = () => {
     setSearchValue("");
     searchResult([]);
@@ -28,20 +44,24 @@ function Search() {
   const handleHideResult = () => {
     setShowResult(false);
   };
+  function RenderSearchResult() {
+    return searchResult.map((item) => {
+      return (
+        <>
+          <KanjiItem key={item.id} data={item} />
+        </>
+      );
+    });
+  }
   return (
     <HeadlessTippy
       interactive
-      //   visible={showResult && searchResult.length > 0}
-      visible={showResult && !!searchValue}
+      visible={showResult && searchResult.length > 0}
       render={(attrs) => (
         <div className={cx("search-result")} tabIndex="-1" {...attrs}>
           <PopperWrapper>
-            <h4 className={cx("search-title")}>
-              Kanji
-              <KanjiItem />
-              <KanjiItem />
-              <KanjiItem />
-            </h4>
+            <h4 className={cx("search-title")}>Kanji</h4>
+            {RenderSearchResult()}
           </PopperWrapper>
         </div>
       )}
@@ -57,12 +77,14 @@ function Search() {
           onChange={(e) => setSearchValue(e.target.value)}
           onFocus={() => setShowResult(true)}
         />
-        {!!searchValue && (
+        {!!searchValue && !loading && (
           <button className={cx("clear")} onClick={handleClear}>
             <FontAwesomeIcon icon={faCircleXmark} />
           </button>
         )}
-        {/* <FontAwesomeIcon className={cx("loading")} icon={faSpinner} /> */}
+        {loading && (
+          <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
+        )}
         <HeadlessTippy>
           <button className={cx("search-btn")}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
