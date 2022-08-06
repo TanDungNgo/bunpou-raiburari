@@ -4,20 +4,24 @@ import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 
 function CardKanji(props) {
+  let kanji = props.Kanji;
+  let hiragana = props.Kanji.structure.split(";");
   return (
-    <div className={cx("card")}>
-      <div className={cx("card__body")}>
-        <img
-          className={cx("card__image")}
-          src={`/img/${props.Kanji.type}.jpg`}
-        ></img>
-        <h2 className={cx("card__title")}>{props.Kanji.title}</h2>
-        <div className={cx("card__description")}>
-          <p>{props.Kanji.mean}</p>
-          <p>{props.Kanji.structure}</p>
+    <Link to={`/kanji`}>
+      <div className={cx("card")}>
+        <div className={cx("card__body")}>
+          <img
+            className={cx("card__image")}
+            src={`/img/${kanji.type}.jpg`}
+          ></img>
+          <h2 className={cx("card__title")}>{kanji.title}</h2>
+          <div className={cx("card__description")}>
+            <p>{hiragana[0]}</p>
+            <p>{kanji.mean}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 export default CardKanji;

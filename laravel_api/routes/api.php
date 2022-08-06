@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Kanji
 Route::get('/list-kanji', [KanjiController::class, 'index']);
 Route::get('/search/q={search}', [KanjiController::class, 'search']);
+Route::get('/kanji/{id}', [KanjiController::class, 'show']);
 
 // Grammar
 Route::get('/list-grammar', [GrammarController::class, 'index']);

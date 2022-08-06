@@ -35,7 +35,6 @@ function Search() {
         setLoading(false);
       });
   }, [searchValue]);
-  console.log(searchResult);
   const handleClear = () => {
     setSearchValue("");
     searchResult([]);

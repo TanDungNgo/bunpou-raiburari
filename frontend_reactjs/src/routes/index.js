@@ -10,7 +10,7 @@ const publicRoutes = [
   { path: "/profile", component: Profile },
   { path: "/listkanji", component: ListKanji },
   { path: "/grammar", component: Grammar },
-  { path: "kanji/:id", component: Kanji },
+  { path: "kanji/@:id", component: Kanji },
 ];
 
 const privateRoutes = [];

@@ -19,10 +19,18 @@ class KanjiController extends Controller
     }
     public function search($search)
     {
-        $result = DB::table('kanji')->where('mean','like','%'.$search.'%')->get();
+        $result = DB::table('kanji')->where('mean', 'like', '%' . $search . '%')->get();
         return response()->json([
             'status' => 200,
             'listKanji' => $result
+        ]);
+    }
+    public function show($id)
+    {
+        $kanji = Kanji::find($id);
+        return response()->json([
+            'status' => 200,
+            'Kanji' => $kanji,
         ]);
     }
 }

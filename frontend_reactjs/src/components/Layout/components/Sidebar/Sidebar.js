@@ -10,17 +10,22 @@ function Sidebar() {
   return (
     <aside className={cx("wrapper")}>
       <Link to="/">
-        <Button leftIcon={<FontAwesomeIcon icon={faHome} />} large outline>
+        <Button
+          leftIcon={<FontAwesomeIcon icon={faHome} />}
+          className={cx("btn")}
+          large
+          primary
+        >
           Home
         </Button>
       </Link>
       <Link to="/listkanji">
-        <Button outline large>
+        <Button outline large className={cx("btn")}>
           Kanji
         </Button>
       </Link>
       <Link to="/grammar">
-        <Button outline large>
+        <Button outline large className={cx("btn")}>
           Grammar
         </Button>
       </Link>
