@@ -1,3 +1,5 @@
+import routeConfig from "~/config/routes"
+
 import Grammar from "~/pages/Grammar";
 import Home from "~/pages/Home";
 import ListKanji from "~/pages/ListKanji";
@@ -6,11 +8,11 @@ import Kanji from "~/pages/Kanji";
 
 // Public routes
 const publicRoutes = [
-  { path: "/", component: Home },
-  { path: "/profile", component: Profile },
-  { path: "/listkanji", component: ListKanji },
-  { path: "/grammar", component: Grammar },
-  { path: "kanji/@:id", component: Kanji },
+  { path: routeConfig.home, component: Home },
+  { path: routeConfig.profile, component: Profile },
+  { path: routeConfig.listKanji, component: ListKanji },
+  { path: routeConfig.listGrammar, component: Grammar },
+  { path: routeConfig.kanji, component: Kanji },
 ];
 
 const privateRoutes = [];

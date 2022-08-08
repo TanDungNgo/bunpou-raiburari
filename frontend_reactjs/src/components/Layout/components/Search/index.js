@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import KanjiItem from "~/components/KanjiItem";
+import { useDebounce } from "~/hooks";
 import HeadlessTippy from "@tippyjs/react/headless";
 import {
   faSpinner,
@@ -18,14 +19,16 @@ function Search() {
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  const debounced = useDebounce(searchValue, 500);
+
   const inputRef = useRef();
   useEffect(() => {
-    if (!searchValue.trim()) {
+    if (!debounced.trim()) {
       setSearchResult([]);
       return;
     }
     setLoading(true);
-    fetch(`http://127.0.0.1:8000/api/search/q=${searchValue}`)
+    fetch(`http://127.0.0.1:8000/api/search/q=${debounced}`)
       .then((res) => res.json())
       .then((res) => {
         setSearchResult(res.listKanji);
@@ -34,7 +37,7 @@ function Search() {
       .catch(() => {
         setLoading(false);
       });
-  }, [searchValue]);
+  }, [debounced]);
   const handleClear = () => {
     setSearchValue("");
     searchResult([]);
@@ -42,6 +45,12 @@ function Search() {
   };
   const handleHideResult = () => {
     setShowResult(false);
+  };
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
+    if (!searchValue.startsWith(" ")) {
+      setSearchValue(searchValue);
+    }
   };
   function RenderSearchResult() {
     return searchResult.map((item) => {
@@ -73,7 +82,7 @@ function Search() {
           type="text"
           placeholder="Search"
           spellCheck={false}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleChange}
           onFocus={() => setShowResult(true)}
         />
         {!!searchValue && !loading && (
@@ -85,7 +94,7 @@ function Search() {
           <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
         )}
         <HeadlessTippy>
-          <button className={cx("search-btn")}>
+          <button className={cx("search-btn")} onMouseDown={(e) => e.preventDefault()}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </HeadlessTippy>

@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 
 function KanjiItem({ data }) {
   return (
-    <Link to={`/kanji/@${data.id}`} className={cx("wrapper")}>
+    <Link to={`/kanji`} className={cx("wrapper")}>
       <img className={cx("img")} src={`img/${data.type}.jpg`} alt={data.type} />
       <div className={cx("info")}>
         <h4 className={cx("word")}>
