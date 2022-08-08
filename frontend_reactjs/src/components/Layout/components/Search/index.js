@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import classNames from "classnames/bind";
+import * as request from "~/utils/request";
+import * as searchServices from "~/apiServices/searchServices";
 import styles from "./Search.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
@@ -27,16 +29,14 @@ function Search() {
       setSearchResult([]);
       return;
     }
-    setLoading(true);
-    fetch(`http://127.0.0.1:8000/api/search/q=${debounced}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResult(res.listKanji);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+
+    const fetchApi = async () => {
+      setLoading(true);
+      const result = await searchServices.search(debounced);
+      setSearchResult(result);
+      setLoading(false);
+    };
+    fetchApi();
   }, [debounced]);
   const handleClear = () => {
     setSearchValue("");
@@ -54,11 +54,7 @@ function Search() {
   };
   function RenderSearchResult() {
     return searchResult.map((item) => {
-      return (
-        <>
-          <KanjiItem key={item.id} data={item} />
-        </>
-      );
+      return <KanjiItem key={item.id} data={item} />;
     });
   }
   return (
@@ -94,7 +90,10 @@ function Search() {
           <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
         )}
         <HeadlessTippy>
-          <button className={cx("search-btn")} onMouseDown={(e) => e.preventDefault()}>
+          <button
+            className={cx("search-btn")}
+            onMouseDown={(e) => e.preventDefault()}
+          >
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </HeadlessTippy>

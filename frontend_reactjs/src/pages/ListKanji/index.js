@@ -1,14 +1,14 @@
-import CardKanji from "~/components/CardKanji";
-import classNames from "classnames/bind";
-import styles from "./ListKanji.module.scss";
 import { useEffect, useState } from "react";
+import classNames from "classnames/bind";
+import * as request from "~/utils/request";
+import CardKanji from "~/components/CardKanji";
+import styles from "./ListKanji.module.scss";
 const cx = classNames.bind(styles);
 
 function ListKanji() {
   const [listKanji, setListKanji] = useState([]);
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/list-kanji")
-      .then((res) => res.json())
+    request.get("list-kanji")
       .then((res) => {
         setListKanji(res.listKanji);
       });

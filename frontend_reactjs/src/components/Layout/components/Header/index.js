@@ -65,7 +65,6 @@ function Header() {
 
   // Handle logic
   const handleMenuChange = (menuItem) => {
-    console.log(menuItem);
   };
 
   const userMenu = [

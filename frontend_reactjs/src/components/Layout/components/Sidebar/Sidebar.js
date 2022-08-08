@@ -24,7 +24,7 @@ function Sidebar() {
           Kanji
         </Button>
       </Link>
-      <Link to="/grammar">
+      <Link to="/listgrammar">
         <Button outline large className={cx("btn")}>
           Grammar
         </Button>
