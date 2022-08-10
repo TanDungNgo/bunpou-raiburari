@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import * as request from "~/utils/request";
-import CardGrammar from "~/components/CardGrammar";
+import CardGrammar from "~/components/CardGrammar/CardGrammar";
 import styles from "./ListGrammar.module.scss";
 const cx = classNames.bind(styles);
 

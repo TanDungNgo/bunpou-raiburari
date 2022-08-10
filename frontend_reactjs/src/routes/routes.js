@@ -1,11 +1,11 @@
 import config from "~/config";
 
-import Grammar from "~/pages/Grammar";
-import Home from "~/pages/Home";
-import ListKanji from "~/pages/ListKanji";
-import Profile from "~/pages/Profile";
-import Kanji from "~/pages/Kanji";
-import ListGrammar from "~/pages/ListGrammar";
+import Grammar from "~/pages/Grammar/Grammar";
+import Home from "~/pages/Home/Home";
+import ListKanji from "~/pages/ListKanji/ListKanji";
+import Profile from "~/pages/Profile/Profile";
+import Kanji from "~/pages/Kanji/Kanji";
+import ListGrammar from "~/pages/ListGrammar/ListGrammar";
 
 // Public routes
 const publicRoutes = [

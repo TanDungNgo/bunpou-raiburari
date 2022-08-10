@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import Button from "~/components/Button";
+import Button from "~/components/Button/Button";
 import styles from "./Sidebar.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";

@@ -6,7 +6,7 @@ import styles from "./Search.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
-import KanjiItem from "~/components/KanjiItem";
+import KanjiItem from "~/components/KanjiItem/KanjiItem";
 import { useDebounce } from "~/hooks";
 import HeadlessTippy from "@tippyjs/react/headless";
 import {

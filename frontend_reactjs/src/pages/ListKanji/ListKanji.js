@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import * as request from "~/utils/request";
-import CardKanji from "~/components/CardKanji";
+import CardKanji from "~/components/CardKanji/CardKanji";
 import styles from "./ListKanji.module.scss";
 const cx = classNames.bind(styles);
 
