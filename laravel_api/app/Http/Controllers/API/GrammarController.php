@@ -17,4 +17,12 @@ class GrammarController extends Controller
             'listGrammar' => $listGrammar,
         ]);
     }
+    public function show($id)
+    {
+        $grammar = Grammar::find($id);
+        return response()->json([
+            'status' => 200,
+            'grammar' => $grammar
+        ]);
+    }
 }

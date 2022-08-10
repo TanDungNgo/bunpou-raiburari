@@ -7,7 +7,7 @@ function CardKanji(props) {
   let kanji = props.Kanji;
   let hiragana = props.Kanji.structure.split(";");
   return (
-    <Link to={`/kanji`}>
+    <Link to={`/kanji/${kanji.id}`}>
       <div className={cx("card")}>
         <div className={cx("card__body")}>
           <img

@@ -29,3 +29,4 @@ Route::get('/kanji/{id}', [KanjiController::class, 'show']);
 
 // Grammar
 Route::get('/list-grammar', [GrammarController::class, 'index']);
+Route::get('/grammar/{id}', [GrammarController::class, 'show']);

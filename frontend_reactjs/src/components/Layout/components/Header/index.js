@@ -59,13 +59,11 @@ const MENU_ITEMS = [
 
 const currentUser = true;
 function Header() {
-  const [img, setImg] = useState("img/logo2.png");
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {}, []);
 
   // Handle logic
-  const handleMenuChange = (menuItem) => {
-  };
+  const handleMenuChange = (menuItem) => {};
 
   const userMenu = [
     {
@@ -91,7 +89,7 @@ function Header() {
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
         <Link to="/">
-          <img className={cx("logo")} src={img} alt="logo" />
+          <img className={cx("logo")} src="/img/logo2.png" alt="logo" />
         </Link>
         <Search />
         <div className={cx("actions")}>
