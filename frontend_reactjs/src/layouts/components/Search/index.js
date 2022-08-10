@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import classNames from "classnames/bind";
 import * as request from "~/utils/request";
-import * as searchServices from "~/apiServices/searchServices";
+import * as searchServices from "~/services/searchService";
 import styles from "./Search.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";

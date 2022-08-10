@@ -1,4 +1,4 @@
-import routeConfig from "~/config/routes"
+import config from "~/config";
 
 import Grammar from "~/pages/Grammar";
 import Home from "~/pages/Home";
@@ -9,12 +9,12 @@ import ListGrammar from "~/pages/ListGrammar";
 
 // Public routes
 const publicRoutes = [
-  { path: routeConfig.home, component: Home },
-  { path: routeConfig.profile, component: Profile },
-  { path: routeConfig.listKanji, component: ListKanji },
-  { path: routeConfig.listGrammar, component: ListGrammar },
-  { path: routeConfig.kanji, component: Kanji },
-  { path: routeConfig.grammar, component: Grammar},
+  { path: config.routes.home, component: Home },
+  { path: config.routes.profile, component: Profile },
+  { path: config.routes.listKanji, component: ListKanji },
+  { path: config.routes.listGrammar, component: ListGrammar },
+  { path: config.routes.kanji, component: Kanji },
+  { path: config.routes.grammar, component: Grammar},
 ];
 
 const privateRoutes = [];

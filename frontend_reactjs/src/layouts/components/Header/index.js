@@ -2,24 +2,20 @@ import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark, faIdCard } from "@fortawesome/free-regular-svg-icons";
+import { faIdCard } from "@fortawesome/free-regular-svg-icons";
 import {
   faComments,
-  faMagnifyingGlass,
   faSignIn,
   faEllipsisVertical,
   faLanguage,
-  faUpload,
-  faCloudUpload,
   faGear,
-  faArrowRightFromBracket,
   faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import HeadlessTippy from "@tippyjs/react/headless";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
-import KanjiItem from "~/components/KanjiItem";
+import config from "~/config";
 import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
 import { UploadIcon } from "~/components/Icons";
@@ -88,7 +84,7 @@ function Header() {
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
-        <Link to="/">
+        <Link to={config.routes.home}>
           <img className={cx("logo")} src="/img/logo2.png" alt="logo" />
         </Link>
         <Search />
