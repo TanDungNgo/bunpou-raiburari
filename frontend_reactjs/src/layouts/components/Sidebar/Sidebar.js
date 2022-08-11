@@ -3,32 +3,32 @@ import { Link } from "react-router-dom";
 import Button from "~/components/Button/Button";
 import styles from "./Sidebar.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faHome } from "@fortawesome/free-solid-svg-icons";
+import Menu, { MenuItem } from "./Menu";
+import config from "~/config";
+
 const cx = classNames.bind(styles);
 
 function Sidebar() {
   return (
     <aside className={cx("wrapper")}>
-      <Link to="/">
-        <Button
-          leftIcon={<FontAwesomeIcon icon={faHome} />}
-          className={cx("btn")}
-          large
-          primary
-        >
-          Home
-        </Button>
-      </Link>
-      <Link to="/listkanji">
-        <Button outline large className={cx("btn")}>
-          Kanji
-        </Button>
-      </Link>
-      <Link to="/listgrammar">
-        <Button outline large className={cx("btn")}>
-          Grammar
-        </Button>
-      </Link>
+      <Menu>
+        <MenuItem
+          title="Home"
+          to={config.routes.home}
+          icon={<FontAwesomeIcon icon={faHome} />}
+        ></MenuItem>
+        <MenuItem
+          title="Kanji"
+          to={config.routes.listKanji}
+          icon={<FontAwesomeIcon icon={faBook} />}
+        ></MenuItem>
+        <MenuItem
+          title="Grammar"
+          to={config.routes.listGrammar}
+          icon={<FontAwesomeIcon icon={faBook} />}
+        ></MenuItem>
+      </Menu>
     </aside>
   );
 }
