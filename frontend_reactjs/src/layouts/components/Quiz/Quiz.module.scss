@@ -1,0 +1,225 @@
+.quiz-box.active,
+.result-box.active,
+.start-btn.active {
+  opacity: 1;
+  z-index: 5;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.start-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.quiz-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  background: linear-gradient(to right, #00b4db, #0083b0);
+  border-radius: 5px;
+  margin: 20px 50px;
+  box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.quiz-box header {
+  position: relative;
+  z-index: 99;
+  height: 70px;
+  padding: 0 30px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-box header .title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.quiz-box header .timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 145px;
+  height: 45px;
+  background: #cce5ff;
+  border: 1px solid #b8daff;
+  border-radius: 5px;
+  padding: 0 8px;
+}
+
+.quiz-box header .timer .time-text {
+  font-weight: 500;
+  font-size: 17;
+  user-select: none;
+}
+
+.quiz-box header .timer .timer-sec {
+  font-size: 18px;
+  font-weight: 500;
+  background: #343a40;
+  height: 30px;
+  width: 45px;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #343a40;
+  user-select: none;
+}
+
+.quiz-box section {
+  padding: 25px 30px 20px 30px;
+}
+
+.quiz-box section .question-text {
+  font-size: 25px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.quiz-box section .answer-list {
+  padding: 20px 0;
+  display: block;
+}
+
+.quiz-box section .answer-text {
+  background: aliceblue;
+  border: 1px solid #84c5fe;
+  border-radius: 5px;
+  padding: 8px 15px;
+  margin-bottom: 15px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+section .answer-list .answer-text:hover {
+  color: #004075;
+  background: #cce5ff;
+  border-color: #b8caff;
+}
+
+.answer-list .answer-text:last-child {
+  margin-bottom: 0px;
+}
+
+.answer-list .answer-text .icon {
+  pointer-events: none;
+}
+
+.answer-list .answer-text .icon .tick {
+  color: #23903c;
+  height: 26px;
+  width: 26px;
+}
+
+.answer-list .answer-text .icon .cross {
+  color: #a42834;
+  height: 26px;
+  width: 26px;
+}
+
+.answer-list .answer-text.correct {
+  color: #155724;
+  background: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.answer-list .answer-text.iscorrect {
+  color: #721c24;
+  background: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.quiz-box footer {
+  height: 60px;
+  width: 100%;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #343a40;
+}
+.quiz-box footer .total-question span {
+  display: flex;
+  user-select: none;
+}
+
+footer .total-question span p {
+  font-weight: 500;
+  padding: 0 5px;
+}
+
+.total-question span p:first-child {
+  padding-left: 0px;
+}
+
+footer .next-btn {
+}
+
+footer .next-btn:hover {
+  color: #fff;
+  background: var(--primary);
+}
+
+.result-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: 50px;
+  background: #fff;
+  width: 450px;
+  padding: 25px 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.result-box h4 {
+  color: #007bff;
+  font-size: 30px;
+}
+.result-box .icon {
+  font-size: 100px;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.result-box .complete-text {
+  font-size: 20px;
+  font-weight: 500;
+}
+.result-box .score-text span {
+  display: flex;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.score-text span p {
+  font-weight: 600;
+  padding: 0 4px;
+}

@@ -1,9 +1,7 @@
 import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
-import Button from "~/components/Button/Button";
 import styles from "./Sidebar.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBook, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faGamepad, faHome } from "@fortawesome/free-solid-svg-icons";
 import Menu, { MenuItem } from "./Menu";
 import config from "~/config";
 
@@ -27,6 +25,11 @@ function Sidebar() {
           title="Grammar"
           to={config.routes.listGrammar}
           icon={<FontAwesomeIcon icon={faBook} />}
+        ></MenuItem>
+        <MenuItem
+          title="Quiz"
+          to={config.routes.quiz}
+          icon={<FontAwesomeIcon icon={faGamepad} />}
         ></MenuItem>
       </Menu>
     </aside>

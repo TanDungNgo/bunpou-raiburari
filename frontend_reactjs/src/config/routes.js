@@ -3,8 +3,9 @@ const routes = {
   profile: "/profile",
   listKanji: "/listkanji",
   listGrammar: "/listgrammar",
-  kanji: "kanji/:id",
-  grammar: "grammar/:id",
+  kanji: "/kanji/:id",
+  grammar: "/grammar/:id",
+  quiz: "/quiz",
 };
 
 export default routes;
