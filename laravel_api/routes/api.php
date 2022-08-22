@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\GrammarController;
 use App\Http\Controllers\API\KanjiController;
+use App\Http\Controllers\API\QuestionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,6 @@ Route::get('/kanji/{id}', [KanjiController::class, 'show']);
 // Grammar
 Route::get('/list-grammar', [GrammarController::class, 'index']);
 Route::get('/grammar/{id}', [GrammarController::class, 'show']);
+
+// Question
+Route::get('/questions', [QuestionController::class, 'index']);

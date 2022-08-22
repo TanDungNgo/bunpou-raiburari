@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKanjiTable extends Migration
+class CreateAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateKanjiTable extends Migration
      */
     public function up()
     {
-        Schema::create('kanji', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('title');
-            $table->string('mean');
-            $table->string('structure');
-            $table->string('example');
+            $table->unsignedBigInteger('question_id');
+            $table->foreign('question_id')->references('id')->on('questions');
+            $table->string('text');
+            $table->string('isCorrect');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateKanjiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kanji');
+        Schema::dropIfExists('answers');
     }
 }

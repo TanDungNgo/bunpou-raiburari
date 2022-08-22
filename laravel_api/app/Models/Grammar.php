@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Grammar extends Model
 {
     use HasFactory;
-    protected $table = 'grammar';
+    protected $table = 'grammars';
     protected $filltable = [
         'type',
         'title',

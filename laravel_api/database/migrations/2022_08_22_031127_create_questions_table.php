@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGrammarTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateGrammarTable extends Migration
      */
     public function up()
     {
-        Schema::create('grammar', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('title');
-            $table->string('mean');
-            $table->string('use');
-            $table->string('structure');
-            $table->string('example');
+            $table->string('text');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateGrammarTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grammar');
+        Schema::dropIfExists('questions');
     }
 }

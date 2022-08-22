@@ -5,15 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kanji extends Model
+class Question extends Model
 {
     use HasFactory;
-    protected $table = 'kanjis';
+    protected $table = 'questions';
     protected $filltable = [
-        'type',
-        'title',
-        'mean',
-        'structure',
-        'example',
+        'text',
     ];
 }
