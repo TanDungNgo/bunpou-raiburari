@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Quiz.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,35 +8,26 @@ import {
   faCrown,
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "~/components/Button/Button";
+import * as request from "~/utils/request";
 
 const cx = classNames.bind(styles);
-
-const questions = [
-  {
-    questionText: "きょうは「食堂」がこんでいました。",
-    answerOptions: [
-      { answerText: "しょくどう", isCorrect: true },
-      { answerText: "しゅくど", isCorrect: false },
-      { answerText: "しょくど", isCorrect: false },
-      { answerText: "しゅくどう", isCorrect: false },
-    ],
-  },
-  {
-    questionText: "くつに「石」が入っていました。",
-    answerOptions: [
-      { answerText: "すな", isCorrect: false },
-      { answerText: "さく", isCorrect: false },
-      { answerText: "いし", isCorrect: true },
-      { answerText: "えだ", isCorrect: false },
-    ],
-  },
-];
 
 function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [checkSelected, setCheckSelected] = useState(false);
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(15);
+  const [questions, setQuestions] = useState([
+    {
+      questionText: "",
+      answerOptions: [],
+    },
+  ]);
+  useEffect(() => {
+    request.get("questions").then((res) => {
+      setQuestions(res.questions);
+    });
+  }, []);
   const Select = (isCorrect, key) => {
     if (!checkSelected) {
       const answer = document.getElementsByClassName(cx("answer-text"));
@@ -53,15 +44,15 @@ function Quiz() {
     }
   };
 
-  const renderAnswer = () => {
-    return questions[currentQuestion].answerOptions.map((item, index) => {
+  const renderAnswer = (array) => {
+    return array.map((item, index) => {
       return (
         <div
           key={index}
           className={cx("answer-text")}
           onClick={() => Select(item.isCorrect, index)}
         >
-          <span>{item.answerText}</span>
+          <span>{item.text}</span>
           {checkSelected ? (
             <div className={cx("icon")}>
               {item.isCorrect ? (
@@ -81,7 +72,7 @@ function Quiz() {
   const Start = () => {
     setClassnameStartButton("");
     setClassnameQuizBox("active");
-    // startTimer(time);
+    startTimer(time);
   };
   const Replay = () => {
     setClassnameQuizBox("active");
@@ -106,8 +97,9 @@ function Quiz() {
         answer[i].classList.remove(cx("iscorrect"));
         answer[i].classList.remove(cx("disabled"));
       }
-      // setTime(15);
-      // startTimer(time);
+      setTime(15);
+      console.log("next");
+      startTimer(time);
       const nextQuestion = currentQuestion + 1;
       if (nextQuestion < questions.length) {
         setCurrentQuestion(nextQuestion);
@@ -120,15 +112,16 @@ function Quiz() {
   };
 
   const startTimer = (timeValue) => {
+    setInterval(timer, 1000);
     const timer = () => {
       if (timeValue >= 0) {
+        console.log(currentQuestion, " ", timeValue);
         setTime(timeValue);
         timeValue--;
       } else {
         return;
       }
     };
-    setInterval(timer, 1000);
   };
 
   return (
@@ -140,32 +133,38 @@ function Quiz() {
         </Button>
       </div>
       {/* Quiz box */}
-      <div className={classesQuizBox}>
-        <header>
-          <div className={cx("title")}> Question {currentQuestion + 1}</div>
-          <div className={cx("timer")}>
-            <div className={cx("time-text")}>Time Left</div>
-            <div className={cx("timer-sec")}>{time}</div>
-          </div>
-        </header>
-        <section>
-          <div className={cx("question-text")}>
-            <span> {questions[currentQuestion].questionText}</span>
-          </div>
-          <div className={cx("answer-list")}>{renderAnswer()}</div>
-        </section>
+      {questions ? (
+        <div className={classesQuizBox}>
+          <header>
+            <div className={cx("title")}> Question {currentQuestion + 1}</div>
+            <div className={cx("timer")}>
+              <div className={cx("time-text")}>Time Left</div>
+              <div className={cx("timer-sec")}>{time}</div>
+            </div>
+          </header>
+          <section>
+            <div className={cx("question-text")}>
+              <span> {questions[currentQuestion].questionText}</span>
+            </div>
+            <div className={cx("answer-list")}>
+              {renderAnswer(questions[currentQuestion].answerOptions)}
+            </div>
+          </section>
 
-        <footer>
-          <div className={cx("total-question")}>
-            <span>
-              <p>{currentQuestion + 1}</p>of<p>{questions.length}</p>Questions
-            </span>
-          </div>
-          <Button outline className={cx("next-btn")} onClick={Next}>
-            Next question
-          </Button>
-        </footer>
-      </div>
+          <footer>
+            <div className={cx("total-question")}>
+              <span>
+                <p>{currentQuestion + 1}</p>of<p>{questions.length}</p>Questions
+              </span>
+            </div>
+            <Button outline className={cx("next-btn")} onClick={Next}>
+              Next question
+            </Button>
+          </footer>
+        </div>
+      ) : (
+        <></>
+      )}
 
       {/* Result box */}
       <div className={classesResultBox}>

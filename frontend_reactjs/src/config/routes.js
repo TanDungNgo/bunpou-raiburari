@@ -1,4 +1,5 @@
 const routes = {
+  login: "/login",
   home: "/",
   profile: "/profile",
   listKanji: "/listkanji",

@@ -7,6 +7,7 @@ import Profile from "~/pages/Profile/Profile";
 import Kanji from "~/pages/Kanji/Kanji";
 import ListGrammar from "~/pages/ListGrammar/ListGrammar";
 import Quiz from "~/layouts/components/Quiz/Quiz";
+import Login from "~/pages/Login/Login";
 
 // Public routes
 const publicRoutes = [
@@ -17,6 +18,7 @@ const publicRoutes = [
   { path: config.routes.kanji, component: Kanji },
   { path: config.routes.grammar, component: Grammar },
   { path: config.routes.quiz, component: Quiz },
+  { path: config.routes.login, component: Login, layout: null },
 ];
 
 const privateRoutes = [];
