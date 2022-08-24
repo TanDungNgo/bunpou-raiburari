@@ -1,15 +1,79 @@
-.formSignup {
-  background-color: antiquewhite;
-  height: 550px;
-  width: 800px;
-  background-color: rgba(255, 255, 255, 0.13);
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  border-radius: 4rem;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-  padding: 10px 35px;
-}
+// .container {
+//   height: 550px;
+//   width: 800px;
+//   background-color: rgba(255, 255, 255, 0.13);
+//   position: absolute;
+//   transform: translate(-50%, -50%);
+//   top: 50%;
+//   left: 50%;
+//   border-radius: 2rem;
+//   backdrop-filter: blur(10px);
+//   border: 2px solid rgba(255, 255, 255, 0.1);
+//   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+//   left: -100%;
+//   transition: all 0.5s ease;
+//   overflow: hidden;
+//   display: flex;
+// }
+
+// .container.active {
+//   left: 50%;
+// }
+
+// .formSignup {
+//   float: left;
+//   width: 400px;
+//   height: 100%;
+//   padding: 80px 20px;
+//   background-color: var(--white);
+//   text-align: center;
+//   border-top-left-radius: 2rem;
+//   border-bottom-left-radius: 2rem;
+// }
+
+// .btnBack {
+//   margin-top: 90px;
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   background-color: var(--primary);
+//   color: var(--white);
+// }
+
+// .btnBack:hover {
+//   border-color: var(--primary);
+//   background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),
+//     var(--primary);
+// }
+
+// [type="text"],
+// [type="password"] {
+//   display: block;
+//   margin: 0 auto;
+//   width: 80%;
+//   border: 0;
+//   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+//   height: 45px;
+//   line-height: 45px;
+//   margin-bottom: 10px;
+//   font-size: 1em;
+//   color: rgba(0, 0, 0, 0.4);
+//   transition: all ease-in-out 1s;
+// }
+
+// .btnRegister {
+//   margin: 10px;
+//   width: 80%;
+// }
+
+// [type="text"]:focus {
+//   outline: none;
+//   border-color: #3498db;
+// }
+
+// .img {
+//   float: right;
+//   width: 400px;
+//   height: 100%;
+//   background-image: url("../../../public/img/library.jpg");
+// }
