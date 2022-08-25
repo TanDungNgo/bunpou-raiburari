@@ -3,7 +3,11 @@ import classNames from "classnames/bind";
 import Button from "~/components/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLock,
+  faEnvelope,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import Signup from "../Signup/Signup";
 import { useState } from "react";
 
@@ -12,9 +16,6 @@ const cx = classNames.bind(styles);
 function Login() {
   const [checkClickBtnSignup, setCheckClickBtnSignup] = useState(false);
 
-  const handleClickSignup = () => {
-    setCheckClickBtnSignup(true);
-  };
   return (
     <div>
       <div className={cx("background")}>
@@ -25,7 +26,7 @@ function Login() {
         <div className={cx("shape")}></div>
         <div className={cx("shape")}></div>
       </div>
-      <form className={cx("formLogin")}>
+      <form className={cx("form-login")}>
         <img className={cx("logo")} src="/img/logo2.png" alt="logo" />
         <h3>LOGIN</h3>
         <label>
@@ -45,7 +46,12 @@ function Login() {
         </label>
         <input type="password" placeholder="Password" />
 
-        <p className={cx("signup")} onClick={handleClickSignup}>
+        <p
+          className={cx("signup")}
+          onClick={() => {
+            setCheckClickBtnSignup(true);
+          }}
+        >
           Signup
         </p>
         <Button primary className={cx("btnLogin")}>
@@ -70,7 +76,14 @@ function Login() {
         </div>
       </form>
       {checkClickBtnSignup ? (
-        <Signup className="active"></Signup>
+        <Signup className="active">
+          <button
+            className={cx("btn-back")}
+            onClick={() => setCheckClickBtnSignup(false)}
+          >
+            <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
+          </button>
+        </Signup>
       ) : (
         <Signup></Signup>
       )}
