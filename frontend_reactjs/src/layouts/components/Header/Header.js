@@ -53,7 +53,7 @@ const MENU_ITEMS = [
   },
 ];
 
-const currentUser = true;
+const currentUser = false;
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {}, []);
@@ -100,8 +100,11 @@ function Header() {
             </>
           ) : (
             <>
-              <Button outline>Register</Button>
-              <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
+              <Button
+                primary
+                leftIcon={<FontAwesomeIcon icon={faSignIn} />}
+                to="/login"
+              >
                 Log in
               </Button>
             </>

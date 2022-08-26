@@ -62,7 +62,7 @@
 
 .form-login label {
   display: block;
-  margin-top: 25px;
+  margin-top: 18px;
   font-size: 16px;
   font-weight: 500;
 }
@@ -87,6 +87,10 @@
   border: 2px solid rgba(4, 115, 255, 0.7);
 }
 
+.err {
+  color: #ff512f;
+}
+
 .form-login button {
   margin-top: 20px;
   width: 100%;
@@ -98,7 +102,7 @@
 }
 
 .social {
-  margin-top: 30px;
+  margin-top: 15px;
   display: flex;
   justify-content: space-between;
 }

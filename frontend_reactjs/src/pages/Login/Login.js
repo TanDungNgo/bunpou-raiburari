@@ -10,10 +10,37 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Signup from "../Signup/Signup";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import * as request from "~/utils/request";
 
 const cx = classNames.bind(styles);
 
 function Login() {
+  const history = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [validate_err, setValidate_err] = useState([]);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+    request.post("/users/login", formData).then((res) => {
+      if (res.status == 200) {
+        swal({
+          title: "Success!",
+          text: res.message,
+          icon: "success",
+        });
+        history("/");
+      } else {
+        console.log(res);
+        setValidate_err(res.validate_err);
+      }
+    });
+  };
+
   const [checkClickBtnSignup, setCheckClickBtnSignup] = useState(false);
 
   return (
@@ -26,7 +53,7 @@ function Login() {
         <div className={cx("shape")}></div>
         <div className={cx("shape")}></div>
       </div>
-      <form className={cx("form-login")}>
+      <form className={cx("form-login")} onSubmit={handleLogin}>
         <img className={cx("logo")} src="/img/logo2.png" alt="logo" />
         <h3>LOGIN</h3>
         <label>
@@ -36,7 +63,18 @@ function Login() {
           ></FontAwesomeIcon>
           Email
         </label>
-        <input type="text" placeholder="Email" />
+        <input
+          type="text"
+          placeholder="Email"
+          name="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        {validate_err ? (
+          <span className={cx("err")}>{validate_err.email}</span>
+        ) : (
+          <></>
+        )}
+
         <label>
           <FontAwesomeIcon
             icon={faLock}
@@ -44,8 +82,17 @@ function Login() {
           ></FontAwesomeIcon>
           Password
         </label>
-        <input type="password" placeholder="Password" />
-
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {validate_err ? (
+          <span className={cx("err")}>{validate_err.password}</span>
+        ) : (
+          <></>
+        )}
         <p
           className={cx("signup")}
           onClick={() => {
@@ -57,7 +104,6 @@ function Login() {
         <Button primary className={cx("btnLogin")}>
           Log In
         </Button>
-
         <div className={cx("social")}>
           <div className={cx("go")}>
             <FontAwesomeIcon

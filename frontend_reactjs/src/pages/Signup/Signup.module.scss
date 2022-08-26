@@ -35,8 +35,7 @@
   border-bottom-left-radius: 2rem;
 }
 
-.form-signup [type="text"],
-[type="password"] {
+.form-signup input {
   display: block;
   margin: 0 auto;
   width: 80%;
@@ -50,7 +49,7 @@
   transition: all ease-in-out 1s;
 }
 
-.form-signup [type="text"]:focus {
+.form-signup input:focus {
   outline: none;
   border-color: #3498db;
 }

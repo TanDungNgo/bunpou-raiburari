@@ -9,4 +9,9 @@ export const get = async (path, options = {}) => {
   return response.data;
 };
 
+export const post = async (path, formData) => {
+  const response = await request.post(path, formData);
+  return response.data;
+};
+
 export default request;

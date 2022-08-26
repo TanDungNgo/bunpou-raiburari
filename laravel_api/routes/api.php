@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\GrammarController;
 use App\Http\Controllers\API\KanjiController;
 use App\Http\Controllers\API\QuestionController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,7 @@ Route::get('/grammar/{id}', [GrammarController::class, 'show']);
 
 // Question
 Route::get('/questions', [QuestionController::class, 'index']);
+
+// User
+Route::post('/users/login', [UserController::class, 'onLogin']);
+Route::post('/users/register', [UserController::class, 'register']);
