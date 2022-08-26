@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./Quiz.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "~/components/Button/Button";
 import * as request from "~/utils/request";
+import swal from "sweetalert";
 
 const cx = classNames.bind(styles);
 
@@ -16,13 +17,17 @@ function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [checkSelected, setCheckSelected] = useState(false);
   const [score, setScore] = useState(0);
-  const [time, setTime] = useState(15);
   const [questions, setQuestions] = useState([
     {
       questionText: "",
       answerOptions: [],
     },
   ]);
+  const [time, setTime] = useState(15);
+  const timerId = useRef();
+  const quizBox = document.getElementsByClassName(cx("quiz-box"));
+  const resultBox = document.getElementsByClassName(cx("result-box"));
+
   useEffect(() => {
     request.get("questions").then((res) => {
       setQuestions(res.questions);
@@ -55,6 +60,7 @@ function Quiz() {
           <span>{item.text}</span>
           {checkSelected ? (
             <div className={cx("icon")}>
+              {clearInterval(timerId.current)}
               {item.isCorrect ? (
                 <FontAwesomeIcon className={cx("tick")} icon={faCheckCircle} />
               ) : (
@@ -69,26 +75,30 @@ function Quiz() {
     });
   };
 
+  const StartTimer = () => {
+    timerId.current = setInterval(() => {
+      setTime((prevTime) => prevTime - 1);
+    }, 1000);
+  };
+
+  const ResetQuestion = () => {
+    setCheckSelected(false);
+    setTime(15);
+    StartTimer();
+  };
+
   const Start = () => {
-    setClassnameStartButton("");
-    setClassnameQuizBox("active");
-    startTimer(time);
+    quizBox[0].classList.add(cx("active"));
+    StartTimer();
   };
   const Replay = () => {
-    setClassnameQuizBox("active");
+    quizBox[0].classList.add(cx("active"));
+    resultBox[0].classList.remove(cx("active"));
     setCurrentQuestion(0);
-    setClassnameResultBox("");
-    setCheckSelected(false);
     setScore(0);
-    // setTime(15);
-    // startTimer(time);
+    ResetQuestion();
   };
-  const [classnameStartButton, setClassnameStartButton] = useState("active");
-  const classesStartButton = cx("start-btn", classnameStartButton);
-  const [classnameQuizBox, setClassnameQuizBox] = useState("");
-  const classesQuizBox = cx("quiz-box", classnameQuizBox);
-  const [classnameResultBox, setClassnameResultBox] = useState("");
-  const classesResultBox = cx("result-box", classnameResultBox);
+
   const Next = () => {
     if (checkSelected) {
       const answer = document.getElementsByClassName(cx("answer-text"));
@@ -97,44 +107,52 @@ function Quiz() {
         answer[i].classList.remove(cx("iscorrect"));
         answer[i].classList.remove(cx("disabled"));
       }
-      setTime(15);
-      console.log("next");
-      startTimer(time);
       const nextQuestion = currentQuestion + 1;
       if (nextQuestion < questions.length) {
         setCurrentQuestion(nextQuestion);
-        setCheckSelected(false);
+        ResetQuestion();
       } else {
-        setClassnameQuizBox("");
-        setClassnameResultBox("active");
+        quizBox[0].classList.remove(cx("active"));
+        resultBox[0].classList.add(cx("active"));
       }
+    } else {
+      swal({
+        title: "Warning!",
+        text: "You have not selected the answer",
+        icon: "warning",
+      });
     }
   };
 
-  const startTimer = (timeValue) => {
-    setInterval(timer, 1000);
-    const timer = () => {
-      if (timeValue >= 0) {
-        console.log(currentQuestion, " ", timeValue);
-        setTime(timeValue);
-        timeValue--;
+  if (time == 0) {
+    clearInterval(timerId.current);
+    swal({
+      title: "Warning!",
+      text: "Time out",
+      icon: "warning",
+    }).then(() => {
+      const nextQuestion = currentQuestion + 1;
+      if (nextQuestion < questions.length) {
+        setCurrentQuestion(nextQuestion);
+        ResetQuestion();
       } else {
-        return;
+        quizBox[0].classList.remove(cx("active"));
+        resultBox[0].classList.add(cx("active"));
       }
-    };
-  };
+    });
+  }
 
   return (
     <div>
       {/* Start button */}
-      <div className={classesStartButton}>
+      <div className={cx("btn-start")}>
         <Button primary onClick={Start}>
           Start Quiz
         </Button>
       </div>
       {/* Quiz box */}
       {questions ? (
-        <div className={classesQuizBox}>
+        <div className={cx("quiz-box")}>
           <header>
             <div className={cx("title")}> Question {currentQuestion + 1}</div>
             <div className={cx("timer")}>
@@ -167,7 +185,7 @@ function Quiz() {
       )}
 
       {/* Result box */}
-      <div className={classesResultBox}>
+      <div className={cx("result-box")}>
         <h4>Congratulation!</h4>
         <div className={cx("icon")}>
           <FontAwesomeIcon icon={faCrown} />
