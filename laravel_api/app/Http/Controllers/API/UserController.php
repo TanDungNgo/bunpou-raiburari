@@ -28,13 +28,13 @@ class UserController extends Controller
             $user = User::where('email', $request->input('email'))->first();
             return response()->json([
                 'status' => 200,
-                'message' => "Login thành công!",
+                'message' => "Login successed",
                 'user' => $user,
             ]);
         }
         return response()->json([
             'status' => 401,
-            'message' => "Login không thành công!",
+            'message' => "Login failed",
         ]);
     }
 

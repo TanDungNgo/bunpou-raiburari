@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styles from "./Quiz.module.scss";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +16,8 @@ import swal from "sweetalert";
 const cx = classNames.bind(styles);
 
 function Quiz() {
+  const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.auth.login.currentUser);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [checkSelected, setCheckSelected] = useState(false);
   const [score, setScore] = useState(0);
@@ -88,8 +92,18 @@ function Quiz() {
   };
 
   const Start = () => {
-    quizBox[0].classList.add(cx("active"));
-    StartTimer();
+    if (currentUser) {
+      quizBox[0].classList.add(cx("active"));
+      StartTimer();
+    } else {
+      swal({
+        title: "Warning!",
+        text: "You are not logged in",
+        icon: "warning",
+      }).then(() => {
+        navigate("/login");
+      });
+    }
   };
   const Replay = () => {
     quizBox[0].classList.add(cx("active"));

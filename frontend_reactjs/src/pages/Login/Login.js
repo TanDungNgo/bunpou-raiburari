@@ -11,34 +11,25 @@ import {
 import Signup from "../Signup/Signup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 import * as request from "~/utils/request";
+import { login } from "~/services/loginService";
 
 const cx = classNames.bind(styles);
 
 function Login() {
-  const history = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [validate_err, setValidate_err] = useState([]);
+  const validate_err = useSelector((state) => state.auth.login.validate_err);
   const handleLogin = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
-    request.post("/users/login", formData).then((res) => {
-      if (res.status == 200) {
-        swal({
-          title: "Success!",
-          text: res.message,
-          icon: "success",
-        });
-        history("/");
-      } else {
-        console.log(res);
-        setValidate_err(res.validate_err);
-      }
-    });
+    login(formData, dispatch, navigate);
   };
 
   const [checkClickBtnSignup, setCheckClickBtnSignup] = useState(false);
@@ -102,7 +93,7 @@ function Login() {
           Signup
         </p>
         <Button primary className={cx("btnLogin")}>
-          Log In
+          Login
         </Button>
         <div className={cx("social")}>
           <div className={cx("go")}>

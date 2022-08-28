@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,17 +13,16 @@ import {
   faGear,
   faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
-import HeadlessTippy from "@tippyjs/react/headless";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
-import { Wrapper as PopperWrapper } from "~/components/Popper";
+
 import config from "~/config";
 import Button from "~/components/Button/Button";
 import Menu from "~/components/Popper/Menu/Menu";
 import { UploadIcon } from "~/components/Icons/Icons";
 import Image from "~/components/Image/Image";
-import { Link } from "react-router-dom";
 import Search from "../Search/Search";
+
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -53,9 +54,9 @@ const MENU_ITEMS = [
   },
 ];
 
-const currentUser = false;
 function Header() {
-  const [searchResult, setSearchResult] = useState([]);
+  const currentUser = useSelector((state) => state.auth.login.currentUser);
+
   useEffect(() => {}, []);
 
   // Handle logic
@@ -91,11 +92,15 @@ function Header() {
         <div className={cx("actions")}>
           {currentUser ? (
             <>
-              <Tippy delay={[0, 200]} content="Upload" placement="bottom">
+              {/* <Tippy delay={[0, 200]} content="Upload" placement="bottom">
                 <button className={cx("action-btn")}>
-                  {/* <FontAwesomeIcon icon={faCloudUpload} /> */}
                   <UploadIcon />
                 </button>
+              </Tippy> */}
+              <Tippy delay={[0, 200]} content="Username" placement="bottom">
+                <p>
+                  <span>Hi, {currentUser.username} </span>
+                </p>
               </Tippy>
             </>
           ) : (
@@ -115,7 +120,7 @@ function Header() {
           >
             {currentUser ? (
               <Image
-                src="https://allimages.sgp1.digitaloceanspaces.com/iteavn/2020/04/hinh-nen-may-tinh-11.jpg"
+                src={currentUser.avatar}
                 className={cx("user-avatar")}
                 alt="avatar"
                 fallback="img/user.png"
