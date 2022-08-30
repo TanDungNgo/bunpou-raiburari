@@ -56,6 +56,7 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
+  const navigate = useNavigate();
   // const currentUser = useSelector((state) => state.auth.login.currentUser);
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -65,8 +66,7 @@ function Header() {
   const handleMenuChange = (menuItem) => {};
 
   const handleLogout = () => {
-    console.log("alo");
-    logout();
+    logout(navigate);
   };
 
   const userMenu = [

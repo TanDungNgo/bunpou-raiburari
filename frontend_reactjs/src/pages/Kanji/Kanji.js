@@ -4,28 +4,34 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import request from "~/utils/request";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles);
 
 function Kanji() {
   const { id } = useParams();
   const [kanji, setKanji] = useState();
+
   useEffect(() => {
     request.get(`kanji/${id}`).then((res) => {
       setKanji(res.data.Kanji);
     });
   }, []);
+
+  const handleBookmark = () => {
+    const iconStar = document.getElementsByClassName(cx("icon"));
+    iconStar[0].classList.add(cx("active"));
+  };
   return (
     <>
       {kanji ? (
         <div className={cx("card")}>
-          <div className={cx("card_bookmark")}>
-            <FontAwesomeIcon
-              icon={faHeart}
-              className={cx("icon")}
-            ></FontAwesomeIcon>
-          </div>
           <div className={cx("card_header", `${kanji.type}`)}>
+            <button className={cx("btn-bookmark")} onClick={handleBookmark}>
+              <FontAwesomeIcon
+                icon={faStar}
+                className={cx("icon")}
+              ></FontAwesomeIcon>
+            </button>
             <div className={cx("card_title")}>{kanji.title}</div>
           </div>
           <div className={cx("card_content")}>

@@ -4,9 +4,24 @@
   box-shadow: 0 2px 20px #e1e5ee;
 }
 
+.btn-bookmark {
+  padding-left: 10px;
+  background-color: transparent;
+}
+.icon {
+  color: var(--white);
+  font-size: large;
+  cursor: pointer;
+}
+.icon.active {
+  color: yellow;
+}
+
 .card_header {
   display: flex;
   border-bottom: 3px solid #eee;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
 }
 
 .card_title {
@@ -49,10 +64,10 @@
 }
 
 .text {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .example {
-    display: flex;
-    flex-direction: column
+  display: flex;
+  flex-direction: column;
 }

@@ -32,7 +32,7 @@ export const login = async (formData, dispatch, navigate) => {
   }
 };
 
-export const logout = () => {
+export const logout = (navigate) => {
   localStorage.removeItem("currentUser");
-  window.location.reload();
+  navigate("/");
 };

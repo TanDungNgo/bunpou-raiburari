@@ -7,6 +7,7 @@ const routes = {
   kanji: "/kanji/:id",
   grammar: "/grammar/:id",
   quiz: "/quiz",
+  bookmark: "/bookmark",
 };
 
 export default routes;

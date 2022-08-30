@@ -3,7 +3,8 @@ import styles from "./Grammar.module.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import request from "~/utils/request";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles);
 
 function Grammar() {
@@ -21,11 +22,21 @@ function Grammar() {
       </div>
     );
   });
+  const handleBookmark = () => {
+    const iconStar = document.getElementsByClassName(cx("icon"));
+    iconStar[0].classList.add(cx("active"));
+  };
   return (
     <div>
       {grammar ? (
         <div className={cx("card")}>
           <div className={cx("card_header", `${grammar.type}`)}>
+            <button className={cx("btn-bookmark")} onClick={handleBookmark}>
+              <FontAwesomeIcon
+                icon={faStar}
+                className={cx("icon")}
+              ></FontAwesomeIcon>
+            </button>
             <div className={cx("card_title")}>{grammar.title}</div>
           </div>
           <div className={cx("card_content")}>
