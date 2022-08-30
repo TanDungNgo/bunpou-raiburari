@@ -4,6 +4,7 @@ use App\Http\Controllers\API\GrammarController;
 use App\Http\Controllers\API\KanjiController;
 use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\BookmarkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,6 @@ Route::get('/questions', [QuestionController::class, 'index']);
 // User
 Route::post('/users/login', [UserController::class, 'onLogin']);
 Route::post('/users/register', [UserController::class, 'register']);
+
+// Bookmark
+Route::get('/bookmark/{id}', [BookmarkController::class, 'bookmark']);
