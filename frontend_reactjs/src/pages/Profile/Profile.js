@@ -6,16 +6,12 @@ import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
 import Image from "~/components/Image/Image";
 const cx = classNames.bind(styles);
 function Profile() {
-  const userLogin = {
-    avatar: "img/user.png",
-    username: "Tan Dung",
-    email: "tandung@gmail.com",
-  };
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   return (
     <div className={cx("wrapper")}>
       <form>
         <Image
-          src="https://allimages.sgp1.digitaloceanspaces.com/iteavn/2020/04/hinh-nen-may-tinh-11.jpg"
+          src={currentUser.avatar}
           className={cx("user-avatar")}
           alt="avatar"
           fallback="img/user.png"
@@ -26,7 +22,7 @@ function Profile() {
           <input
             type="text"
             className={cx("input")}
-            defaultValue={userLogin.username}
+            defaultValue={currentUser.username}
           />
         </div>
         <div className={cx("item")}>
@@ -35,7 +31,7 @@ function Profile() {
           <input
             type="text"
             className={cx("input")}
-            defaultValue={userLogin.email}
+            defaultValue={currentUser.email}
           />
         </div>
         <div>

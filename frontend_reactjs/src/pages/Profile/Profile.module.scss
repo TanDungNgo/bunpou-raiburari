@@ -1,4 +1,6 @@
 .wrapper {
+  margin: 10px;
+  border-radius: 1rem;
   background-image: url("../../../public/img/profile_bg.webp");
   background-position: center;
   background-repeat: no-repeat;
@@ -29,8 +31,8 @@
   display: flex;
 
   &:focus {
-    background-color: #ddd;
     outline: none;
+    border: 2px solid var(--primary);
   }
 }
 .btn {

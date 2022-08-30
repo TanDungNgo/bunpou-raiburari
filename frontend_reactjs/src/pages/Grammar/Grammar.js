@@ -30,13 +30,15 @@ function Grammar() {
     <div>
       {grammar ? (
         <div className={cx("card")}>
-          <div className={cx("card_header", `${grammar.type}`)}>
+          <div className={cx("card_bookmark", `${grammar.type}`)}>
             <button className={cx("btn-bookmark")} onClick={handleBookmark}>
               <FontAwesomeIcon
                 icon={faStar}
                 className={cx("icon")}
               ></FontAwesomeIcon>
             </button>
+          </div>
+          <div className={cx("card_header", `${grammar.type}`)}>
             <div className={cx("card_title")}>{grammar.title}</div>
           </div>
           <div className={cx("card_content")}>

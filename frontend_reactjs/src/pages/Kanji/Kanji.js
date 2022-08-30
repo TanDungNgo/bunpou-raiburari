@@ -25,13 +25,15 @@ function Kanji() {
     <>
       {kanji ? (
         <div className={cx("card")}>
-          <div className={cx("card_header", `${kanji.type}`)}>
+          <div className={cx("card_bookmark", `${kanji.type}`)}>
             <button className={cx("btn-bookmark")} onClick={handleBookmark}>
               <FontAwesomeIcon
                 icon={faStar}
                 className={cx("icon")}
               ></FontAwesomeIcon>
             </button>
+          </div>
+          <div className={cx("card_header", `${kanji.type}`)}>
             <div className={cx("card_title")}>{kanji.title}</div>
           </div>
           <div className={cx("card_content")}>
