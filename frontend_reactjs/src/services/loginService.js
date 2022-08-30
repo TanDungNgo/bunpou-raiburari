@@ -12,6 +12,8 @@ export const login = async (formData, dispatch, navigate) => {
         text: res.message,
         icon: "success",
       }).then(() => {
+        const user = JSON.stringify(res.user);
+        localStorage.setItem("currentUser", user);
         dispatch(loginSuccess(res.user));
         navigate("/");
       });
@@ -28,4 +30,9 @@ export const login = async (formData, dispatch, navigate) => {
     console.log(error);
     dispatch(loginFailed());
   }
+};
+
+export const logout = () => {
+  localStorage.removeItem("currentUser");
+  window.location.reload();
 };

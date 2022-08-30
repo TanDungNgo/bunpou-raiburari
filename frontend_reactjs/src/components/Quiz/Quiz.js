@@ -17,7 +17,8 @@ const cx = classNames.bind(styles);
 
 function Quiz() {
   const navigate = useNavigate();
-  const currentUser = useSelector((state) => state.auth.login.currentUser);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  // const currentUser = useSelector((state) => state.auth.login.currentUser);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [checkSelected, setCheckSelected] = useState(false);
   const [score, setScore] = useState(0);

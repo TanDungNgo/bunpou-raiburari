@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,6 +22,7 @@ import Menu from "~/components/Popper/Menu/Menu";
 import { UploadIcon } from "~/components/Icons/Icons";
 import Image from "~/components/Image/Image";
 import Search from "../Search/Search";
+import { logout } from "~/services/loginService";
 
 const cx = classNames.bind(styles);
 
@@ -55,12 +56,18 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-  const currentUser = useSelector((state) => state.auth.login.currentUser);
+  // const currentUser = useSelector((state) => state.auth.login.currentUser);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   useEffect(() => {}, []);
 
   // Handle logic
   const handleMenuChange = (menuItem) => {};
+
+  const handleLogout = () => {
+    console.log("alo");
+    logout();
+  };
 
   const userMenu = [
     {
@@ -77,8 +84,8 @@ function Header() {
     {
       icon: <FontAwesomeIcon icon={faSignOut} />,
       title: "Log out",
-      to: "/login",
       separate: true,
+      onClick: handleLogout,
     },
   ];
 
@@ -119,12 +126,14 @@ function Header() {
             onChange={handleMenuChange}
           >
             {currentUser ? (
-              <Image
-                src={currentUser.avatar}
-                className={cx("user-avatar")}
-                alt="avatar"
-                fallback="img/user.png"
-              />
+              <div>
+                <Image
+                  src={currentUser.avatar}
+                  className={cx("user-avatar")}
+                  alt="avatar"
+                  fallback="img/user.png"
+                />
+              </div>
             ) : (
               <button className={cx("more-btn")}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />

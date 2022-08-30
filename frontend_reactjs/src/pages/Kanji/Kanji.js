@@ -3,6 +3,8 @@ import styles from "./Kanji.module.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import request from "~/utils/request";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 const cx = classNames.bind(styles);
 
 function Kanji() {
@@ -17,6 +19,12 @@ function Kanji() {
     <>
       {kanji ? (
         <div className={cx("card")}>
+          <div className={cx("card_bookmark")}>
+            <FontAwesomeIcon
+              icon={faHeart}
+              className={cx("icon")}
+            ></FontAwesomeIcon>
+          </div>
           <div className={cx("card_header", `${kanji.type}`)}>
             <div className={cx("card_title")}>{kanji.title}</div>
           </div>

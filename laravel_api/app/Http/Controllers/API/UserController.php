@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -26,6 +28,8 @@ class UserController extends Controller
             'password' => $request->input('password')
         ])) {
             $user = User::where('email', $request->input('email'))->first();
+            // $token = $user->createToken($user->email . '_Token')->plainTextToken;
+
             return response()->json([
                 'status' => 200,
                 'message' => "Login successed",
@@ -50,14 +54,16 @@ class UserController extends Controller
                 'validate_err' => $validator->messages(),
             ]);
         }
+
         $user = new User;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        // $user->remember_token = Str::random(60);
         $user->save();
         return response()->json([
             'status' => 200,
-            'message' => "Đăng kí thành công!",
+            'message' => "Signup successed",
         ]);
     }
 }
