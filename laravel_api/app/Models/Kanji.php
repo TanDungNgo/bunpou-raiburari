@@ -10,6 +10,7 @@ class Kanji extends Model
     use HasFactory;
     protected $table = 'kanjis';
     protected $filltable = [
+        'id',
         'type',
         'title',
         'mean',

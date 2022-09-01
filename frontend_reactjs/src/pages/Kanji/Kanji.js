@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import request from "~/utils/request";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { bookmark, unbookmark } from "~/services/bookmarkedService";
 const cx = classNames.bind(styles);
 
 function Kanji() {
@@ -12,6 +13,7 @@ function Kanji() {
   const { id } = useParams();
   const [kanji, setKanji] = useState();
   const [checkBookmark, setCheckBookmark] = useState(false);
+  const [idBookmark, setIdBookmark] = useState();
 
   useEffect(() => {
     request.get(`kanji/${id}`).then((res) => {
@@ -21,9 +23,10 @@ function Kanji() {
 
   useEffect(() => {
     request.get(`bookmarkKanjis/${currentUser.id}`).then((res) => {
-      for (var i = 0; i < res.data.listKanji.length; i++) {
-        if (id == res.data.listKanji[i].kanji_id) {
+      for (var i = 0; i < res.data.bookmarkedKanjis.length; i++) {
+        if (id == res.data.bookmarkedKanjis[i].kanji_id) {
           setCheckBookmark(true);
+          setIdBookmark(res.data.bookmarkedKanjis[i].id);
           break;
         }
       }
@@ -35,10 +38,15 @@ function Kanji() {
       const iconStar = document.getElementsByClassName(cx("icon", "active"));
       iconStar[0].classList.remove(cx("active"));
       setCheckBookmark(false);
+      unbookmark(idBookmark);
     } else {
       const iconStar = document.getElementsByClassName(cx("icon"));
       iconStar[0].classList.add(cx("active"));
       setCheckBookmark(true);
+      const formData = new FormData();
+      formData.append("user_id", currentUser.id);
+      formData.append("kanji_id", id);
+      bookmark(formData);
     }
   };
   return (

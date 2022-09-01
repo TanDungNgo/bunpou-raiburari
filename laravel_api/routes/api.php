@@ -42,7 +42,7 @@ Route::post('/users/login', [UserController::class, 'onLogin']);
 Route::post('/users/register', [UserController::class, 'register']);
 
 // Bookmark
-Route::get('/bookmark/{id}', [BookmarkController::class, 'index']);
+Route::get('/bookmarked/{id}', [BookmarkController::class, 'index']);
 Route::get('/bookmarkKanjis/{id}', [BookmarkController::class, 'Kanji']);
 Route::post('/bookmarkedKanji', [BookmarkController::class, 'bookmarkedKanji']);
 Route::delete('/unbookmarkedKanji/{id}', [BookmarkController::class, 'unbookmarkedKanji']);

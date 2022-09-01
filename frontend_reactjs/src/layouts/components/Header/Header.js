@@ -22,7 +22,7 @@ import Menu from "~/components/Popper/Menu/Menu";
 import { UploadIcon } from "~/components/Icons/Icons";
 import Image from "~/components/Image/Image";
 import Search from "../Search/Search";
-import { logout } from "~/services/loginService";
+import { logout } from "~/services/userService";
 
 const cx = classNames.bind(styles);
 

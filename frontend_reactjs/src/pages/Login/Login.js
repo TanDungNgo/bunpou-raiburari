@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 import * as request from "~/utils/request";
-import { login } from "~/services/loginService";
+import { login } from "~/services/userService";
 
 const cx = classNames.bind(styles);
 

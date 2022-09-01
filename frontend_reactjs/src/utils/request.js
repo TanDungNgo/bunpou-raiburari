@@ -14,4 +14,9 @@ export const post = async (path, formData) => {
   return response.data;
 };
 
+export const destroy = async (path) => {
+  const response = await request.delete(path);
+  return response.data;
+};
+
 export default request;

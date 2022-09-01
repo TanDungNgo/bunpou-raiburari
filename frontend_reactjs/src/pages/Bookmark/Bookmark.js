@@ -11,7 +11,7 @@ function Bookmark() {
   const [listKanji, setListKanji] = useState([]);
   const [listGrammar, setListGrammar] = useState([]);
   useEffect(() => {
-    request.get(`bookmark/${currentUser.id}`).then((res) => {
+    request.get(`bookmarked/${currentUser.id}`).then((res) => {
       setListKanji(res.listKanji);
       setListGrammar(res.listGrammar);
     });
