@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class BookmarkController extends Controller
 {
-    public function bookmark($id)
+    public function index($id)
     {
         $Kanji = DB::table('bookmark_kanjis')->where('user_id', $id)->get();
         $Grammar = DB::table('bookmark_grammars')->where('user_id', $id)->get();
@@ -48,12 +48,34 @@ class BookmarkController extends Controller
         ]);
     }
 
-    public function bookmarkKanji($id)
+    public function Kanji($id)
     {
-        $listKanji = DB::table('bookmark_kanjis')->select("bookmark_kanjis.kanji_id")->where('user_id', $id)->get();
+        $listKanji = DB::table('bookmark_kanjis')->select("bookmark_kanjis.id","bookmark_kanjis.kanji_id")->where('user_id', $id)->get();
         return response()->json([
             'status' => 200,
             'listKanji' => $listKanji,
+        ]);
+    }
+
+    public function bookmarkedKanji(Request $request)
+    {
+        $bookmarked = new BookmarkKanji;
+        $bookmarked->user_id = $request->input('user_id');
+        $bookmarked->kanji_id = $request->input('kanji_id');
+        $bookmarked->save();
+        return response()->json([
+            'status' => 200,
+            'message' => "Bookmark successed"
+        ]);
+    }
+
+    public function unbookmarkedKanji($id)
+    {
+        $unbookmarked = BookmarkKanji::find($id);
+        $unbookmarked->delete();
+        return response()->json([
+            'status' => 200,
+            'message' =>  "Unbookmark successed"
         ]);
     }
 }

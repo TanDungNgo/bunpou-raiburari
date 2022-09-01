@@ -20,7 +20,7 @@ function Kanji() {
   }, []);
 
   useEffect(() => {
-    request.get(`bookmarkKanji/${currentUser.id}`).then((res) => {
+    request.get(`bookmarkKanjis/${currentUser.id}`).then((res) => {
       for (var i = 0; i < res.data.listKanji.length; i++) {
         if (id == res.data.listKanji[i].kanji_id) {
           setCheckBookmark(true);
