@@ -1,8 +1,19 @@
 .wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 20rem));
-    gap: 2rem;
-    justify-content: center;
-    padding: 30px;
-  }
-  
+}
+
+.title {
+  overflow: hidden;
+  box-shadow: 0 2px 20px #e1e5ee;
+  border-radius: 1rem;
+  padding: 15px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.listCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 20rem));
+  gap: 2rem;
+  justify-content: center;
+  padding: 30px;
+}

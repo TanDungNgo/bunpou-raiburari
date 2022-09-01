@@ -35,11 +35,11 @@ function Bookmark() {
     });
   };
   return (
-    <div className={cx("")}>
-      <h2>Kanji</h2>
-      <div className={cx("wrapper")}>{renderCardKanji()}</div>
-      <h2>Grammar</h2>
-      <div className={cx("wrapper")}>{renderCardGrammar()}</div>
+    <div className={cx("wrapper")}>
+      <h2 className={cx("title")}>Kanji</h2>
+      <div className={cx("listCard")}>{renderCardKanji()}</div>
+      <h2 className={cx("title")}>Grammar</h2>
+      <div className={cx("listCard")}>{renderCardGrammar()}</div>
     </div>
   );
 }
