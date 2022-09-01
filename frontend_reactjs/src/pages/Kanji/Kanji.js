@@ -8,8 +8,10 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles);
 
 function Kanji() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const { id } = useParams();
   const [kanji, setKanji] = useState();
+  const [checkBookmark, setCheckBookmark] = useState(false);
 
   useEffect(() => {
     request.get(`kanji/${id}`).then((res) => {
@@ -17,9 +19,27 @@ function Kanji() {
     });
   }, []);
 
+  useEffect(() => {
+    request.get(`bookmarkKanji/${currentUser.id}`).then((res) => {
+      for (var i = 0; i < res.data.listKanji.length; i++) {
+        if (id == res.data.listKanji[i].kanji_id) {
+          setCheckBookmark(true);
+          break;
+        }
+      }
+    });
+  }, []);
+
   const handleBookmark = () => {
-    const iconStar = document.getElementsByClassName(cx("icon"));
-    iconStar[0].classList.add(cx("active"));
+    if (checkBookmark) {
+      const iconStar = document.getElementsByClassName(cx("icon", "active"));
+      iconStar[0].classList.remove(cx("active"));
+      setCheckBookmark(false);
+    } else {
+      const iconStar = document.getElementsByClassName(cx("icon"));
+      iconStar[0].classList.add(cx("active"));
+      setCheckBookmark(true);
+    }
   };
   return (
     <>
@@ -27,10 +47,17 @@ function Kanji() {
         <div className={cx("card")}>
           <div className={cx("card_bookmark", `${kanji.type}`)}>
             <button className={cx("btn-bookmark")} onClick={handleBookmark}>
-              <FontAwesomeIcon
-                icon={faStar}
-                className={cx("icon")}
-              ></FontAwesomeIcon>
+              {checkBookmark ? (
+                <FontAwesomeIcon
+                  icon={faStar}
+                  className={cx("icon", "active")}
+                ></FontAwesomeIcon>
+              ) : (
+                <FontAwesomeIcon
+                  icon={faStar}
+                  className={cx("icon")}
+                ></FontAwesomeIcon>
+              )}
             </button>
           </div>
           <div className={cx("card_header", `${kanji.type}`)}>

@@ -8,10 +8,9 @@ const cx = classNames.bind(styles);
 function ListKanji() {
   const [listKanji, setListKanji] = useState([]);
   useEffect(() => {
-    request.get("list-kanji")
-      .then((res) => {
-        setListKanji(res.listKanji);
-      });
+    request.get("list-kanji").then((res) => {
+      setListKanji(res.listKanji);
+    });
   }, []);
   const renderCard = (listKanji) => {
     return listKanji.map((item, index) => {
