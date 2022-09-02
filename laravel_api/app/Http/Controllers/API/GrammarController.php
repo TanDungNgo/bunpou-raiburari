@@ -25,4 +25,12 @@ class GrammarController extends Controller
             'grammar' => $grammar
         ]);
     }
+    public function searchType($type)
+    {
+        $result = DB::table('grammars')->where('type', $type)->get();
+        return response()->json([
+            'status' => 200,
+            'listGrammar' => $result
+        ]);
+    }
 }

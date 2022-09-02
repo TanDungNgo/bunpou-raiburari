@@ -33,4 +33,12 @@ class KanjiController extends Controller
             'Kanji' => $kanji,
         ]);
     }
+    public function searchType($type)
+    {
+        $result = DB::table('kanjis')->where('type', $type)->get();
+        return response()->json([
+            'status' => 200,
+            'listKanji' => $result
+        ]);
+    }
 }

@@ -29,10 +29,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/list-kanji', [KanjiController::class, 'index']);
 Route::get('/search/q={search}', [KanjiController::class, 'search']);
 Route::get('/kanji/{id}', [KanjiController::class, 'show']);
+Route::get('/list-kanji/{type}', [KanjiController::class, 'searchType']);
 
 // Grammar
 Route::get('/list-grammar', [GrammarController::class, 'index']);
 Route::get('/grammar/{id}', [GrammarController::class, 'show']);
+Route::get('/list-grammar/{type}', [GrammarController::class, 'searchType']);
 
 // Question
 Route::get('/questions', [QuestionController::class, 'index']);
