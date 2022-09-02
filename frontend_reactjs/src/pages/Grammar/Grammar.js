@@ -15,7 +15,14 @@ function Grammar() {
       setGrammar(res.data.grammar);
     });
   }, []);
-  const renderExample = grammar?.example?.split("。").map((item, index) => {
+  const renderStructure = grammar?.structure?.split("/").map((item, index) => {
+    return (
+      <div key={index}>
+        <p className={cx("text")}>{item}</p>
+      </div>
+    );
+  });
+  const renderExample = grammar?.example?.split("/").map((item, index) => {
     return (
       <div key={index}>
         <p>{item}</p>
@@ -57,7 +64,7 @@ function Grammar() {
             <div className={cx("box", `${grammar.type}`)}>
               <span>Cấu trúc</span>
             </div>
-            <p className={cx("text")}>{grammar.structure}</p>
+            <div className={cx("structure")}> {renderStructure}</div>
           </div>
           <div className={cx("card_content")}>
             <div className={cx("box", "ex", `${grammar.type}`)}>
