@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Kanji;
+use Validator;
 
 class KanjiController extends Controller
 {
@@ -39,6 +40,46 @@ class KanjiController extends Controller
         return response()->json([
             'status' => 200,
             'listKanji' => $result
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'type' => 'required',
+            'title' => 'required',
+            'mean' => 'required',
+            'structure' => 'required',
+            'example' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'validate_err' => $validator->messages(),
+            ]);
+        } else {
+            $kanji = new Kanji;
+            $kanji->type = $request->input('type');
+            $kanji->title = $request->input('title');
+            $kanji->mean = $request->input('mean');
+            $kanji->structure = $request->input('structure');
+            $kanji->example = $request->input('example');
+            $kanji->save();
+        }
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Kanji Added Successfully',
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $kanji = Kanji::find($id);
+        $kanji->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Kanji Deleted Successfully',
         ]);
     }
 }
