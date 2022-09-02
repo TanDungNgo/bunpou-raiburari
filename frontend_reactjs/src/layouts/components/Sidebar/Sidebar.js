@@ -6,6 +6,7 @@ import {
   faBookBookmark,
   faGamepad,
   faHome,
+  faMessage,
 } from "@fortawesome/free-solid-svg-icons";
 import Menu, { MenuItem } from "./Menu";
 import config from "~/config";
@@ -35,6 +36,11 @@ function Sidebar() {
           title="Bookmark"
           to={config.routes.bookmark}
           icon={<FontAwesomeIcon icon={faBookBookmark} />}
+        ></MenuItem>
+        <MenuItem
+          title="Conversation"
+          to={config.routes.conservation}
+          icon={<FontAwesomeIcon icon={faMessage} />}
         ></MenuItem>
         <MenuItem
           title="Quiz"

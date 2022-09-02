@@ -6,9 +6,10 @@ import ListKanji from "~/pages/ListKanji/ListKanji";
 import Profile from "~/pages/Profile/Profile";
 import Kanji from "~/pages/Kanji/Kanji";
 import ListGrammar from "~/pages/ListGrammar/ListGrammar";
-import Quiz from "~/components/Quiz/Quiz";
 import Login from "~/pages/Login/Login";
 import Bookmark from "~/pages/Bookmark/Bookmark";
+import QuizPage from "~/pages/QuizPage/QuizPage";
+import ConversationPage from "~/pages/ConversationPage/ConversationPage";
 
 // Public routes
 const publicRoutes = [
@@ -18,8 +19,9 @@ const publicRoutes = [
   { path: config.routes.listGrammar, component: ListGrammar },
   { path: config.routes.kanji, component: Kanji },
   { path: config.routes.grammar, component: Grammar },
-  { path: config.routes.quiz, component: Quiz },
+  { path: config.routes.quiz, component: QuizPage },
   { path: config.routes.bookmark, component: Bookmark },
+  { path: config.routes.conservation, component: ConversationPage },
   { path: config.routes.login, component: Login, layout: null },
 ];
 

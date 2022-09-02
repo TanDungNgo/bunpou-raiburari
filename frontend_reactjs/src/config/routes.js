@@ -8,6 +8,7 @@ const routes = {
   grammar: "/grammar/:id",
   quiz: "/quiz",
   bookmark: "/bookmark",
+  conservation: "/conservation",
 };
 
 export default routes;
