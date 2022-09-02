@@ -37,6 +37,8 @@ Route::delete('/delete-kanji/{id}', [KanjiController::class, 'destroy']);
 Route::get('/list-grammar', [GrammarController::class, 'index']);
 Route::get('/grammar/{id}', [GrammarController::class, 'show']);
 Route::get('/list-grammar/{type}', [GrammarController::class, 'searchType']);
+Route::post('/add-grammar', [GrammarController::class, 'store']);
+Route::delete('/delete-grammar/{id}', [GrammarController::class, 'destroy']);
 
 // Question
 Route::get('/questions', [QuestionController::class, 'index']);
