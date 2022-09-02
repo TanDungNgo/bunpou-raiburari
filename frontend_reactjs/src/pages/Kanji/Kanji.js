@@ -50,10 +50,10 @@ function Kanji() {
     }
   };
   return (
-    <>
+    <div className={cx("wrapper")}>
       {kanji ? (
         <div className={cx("card")}>
-          <div className={cx("card_bookmark", `${kanji.type}`)}>
+          <div className={cx("card-bookmark", `${kanji.type}`)}>
             <button className={cx("btn-bookmark")} onClick={handleBookmark}>
               {checkBookmark ? (
                 <FontAwesomeIcon
@@ -68,32 +68,33 @@ function Kanji() {
               )}
             </button>
           </div>
-          <div className={cx("card_header", `${kanji.type}`)}>
-            <div className={cx("card_title")}>{kanji.title}</div>
+          <div className={cx("card-header", `${kanji.type}`)}>
+            <div className={cx("card-title")}>{kanji.title}</div>
           </div>
-          <div className={cx("card_content")}>
+          <div className={cx("card-content")}>
             <div className={cx("box", `${kanji.type}`)}>
               <span>Ý nghĩa</span>
             </div>
             <p className={cx("text")}>{kanji.mean}</p>
           </div>
-          <div className={cx("card_content")}>
+          <div className={cx("card-content")}>
             <div className={cx("box", `${kanji.type}`)}>
               <span>Cấu trúc</span>
             </div>
             <p className={cx("text")}>{kanji.structure.split(";")} </p>
           </div>
-          <div className={cx("card_content")}>
+          <div className={cx("card-content")}>
             <div className={cx("box", "ex", `${kanji.type}`)}>
               <span>Ví dụ</span>
             </div>
             <p className={cx("text")}>{kanji.example}</p>
           </div>
+          <div className={cx("card-footer", `${kanji.type}`)}></div>
         </div>
       ) : (
         <></>
       )}
-    </>
+    </div>
   );
 }
 export default Kanji;

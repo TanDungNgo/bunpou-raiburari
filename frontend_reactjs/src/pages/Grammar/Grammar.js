@@ -27,7 +27,7 @@ function Grammar() {
     iconStar[0].classList.add(cx("active"));
   };
   return (
-    <div>
+    <div className={cx("wrapper")}>
       {grammar ? (
         <div className={cx("card")}>
           <div className={cx("card_bookmark", `${grammar.type}`)}>
@@ -66,6 +66,7 @@ function Grammar() {
             {/* <p className={cx("text")}>{grammar.example}</p> */}
             <div className={cx("example")}> {renderExample}</div>
           </div>
+          <div className={cx("card-footer", `${grammar.type}`)}></div>
         </div>
       ) : (
         <></>

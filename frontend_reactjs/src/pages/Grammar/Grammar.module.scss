@@ -1,3 +1,7 @@
+.wrapper {
+  height: 400px;
+}
+
 .card {
   margin: 30px 10px;
   border-radius: 1rem;
@@ -76,4 +80,10 @@
 .example {
   display: flex;
   flex-direction: column;
+}
+
+.card-footer {
+  height: 10px;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
