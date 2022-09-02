@@ -54,8 +54,8 @@ function Quiz() {
     }
   };
 
-  const renderAnswer = (array) => {
-    return array.map((item, index) => {
+  const renderAnswer = () => {
+    return questions[currentQuestion]?.answerOptions.map((item, index) => {
       return (
         <div
           key={index}
@@ -177,11 +177,9 @@ function Quiz() {
           </header>
           <section>
             <div className={cx("question-text")}>
-              <span> {questions[currentQuestion].questionText}</span>
+              <span> {questions[currentQuestion]?.questionText}</span>
             </div>
-            <div className={cx("answer-list")}>
-              {renderAnswer(questions[currentQuestion].answerOptions)}
-            </div>
+            <div className={cx("answer-list")}>{renderAnswer()}</div>
           </section>
 
           <footer>
