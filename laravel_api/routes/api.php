@@ -30,6 +30,8 @@ Route::get('/list-kanji', [KanjiController::class, 'index']);
 Route::get('/search/q={search}', [KanjiController::class, 'search']);
 Route::get('/kanji/{id}', [KanjiController::class, 'show']);
 Route::get('/list-kanji/{type}', [KanjiController::class, 'searchType']);
+Route::post('/add-kanji', [KanjiController::class, 'store']);
+Route::delete('/delete-kanji/{id}', [KanjiController::class, 'destroy']);
 
 // Grammar
 Route::get('/list-grammar', [GrammarController::class, 'index']);
