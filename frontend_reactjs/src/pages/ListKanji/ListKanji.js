@@ -23,6 +23,28 @@ function ListKanji() {
   };
   return (
     <div>
+      <div className={cx("list")}>
+        <ul>
+          <li>
+            <button className={cx("btn", "All")}>All</button>
+          </li>
+          <li>
+            <button className={cx("btn", "N5")}>N5</button>
+          </li>
+          <li>
+            <button className={cx("btn", "N4")}>N4</button>
+          </li>
+          <li>
+            <button className={cx("btn", "N3")}>N3</button>
+          </li>
+          <li>
+            <button className={cx("btn", "N2")}>N2</button>
+          </li>
+          <li>
+            <button className={cx("btn", "N1")}>N1</button>
+          </li>
+        </ul>
+      </div>
       <div className={cx("wrapper")}> {renderCard(listKanji)}</div>
     </div>
   );

@@ -1,20 +1,35 @@
 import { useEffect, useState } from "react";
-import CardKanji from "~/components/CardKanji/CardKanji";
-import * as request from "~/utils/request";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 import classNames from "classnames/bind";
 import styles from "./Bookmark.module.scss";
+import * as request from "~/utils/request";
 import CardGrammar from "~/components/CardGrammar/CardGrammar";
+import CardKanji from "~/components/CardKanji/CardKanji";
+
 const cx = classNames.bind(styles);
 
 function Bookmark() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const [listKanji, setListKanji] = useState([]);
   const [listGrammar, setListGrammar] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    request.get(`bookmarked/${currentUser.id}`).then((res) => {
-      setListKanji(res.listKanji);
-      setListGrammar(res.listGrammar);
-    });
+    if (!currentUser) {
+      swal({
+        title: "Warning!",
+        text: "You are not logged in",
+        icon: "warning",
+      }).then(() => {
+        navigate("/login");
+      });
+    } else {
+      request.get(`bookmarked/${currentUser.id}`).then((res) => {
+        setListKanji(res.listKanji);
+        setListGrammar(res.listGrammar);
+      });
+    }
   }, []);
   const renderCardKanji = () => {
     return listKanji.map((item, index) => {

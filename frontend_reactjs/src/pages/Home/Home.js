@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 
 function Home() {
   return (
-    <div>
+    <div className={cx("home")}>
       <h2>Home page</h2>
     </div>
   );

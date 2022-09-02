@@ -1,8 +1,77 @@
 .wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 20rem));
-    gap: 2rem;
-    justify-content: center;
-    padding: 30px;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 20rem));
+  gap: 2rem;
+  justify-content: center;
+  padding: 30px;
+  min-height: 500px;
+}
+
+.list {
+  overflow: hidden;
+  box-shadow: 0 2px 20px #e1e5ee;
+  border-radius: 1rem;
+  padding: 5px;
+  margin-top: 30px;
+}
+.list ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding-left: 60px;
+  float: left;
+}
+.list ul li {
+  display: inline-block;
+  margin: 0;
+  padding: 5px 20px;
+}
+
+.btn {
+  font-size: 20px;
+  width: 70px;
+  padding: 5px;
+  border-radius: 1rem;
+  background-color: rgba(52, 73, 94);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.All {
+  border: solid var(--primary);
+  background-color: transparent;
+  color: var(--primary);
+}
+
+.N1:hover {
+  background-color: #ff595e;
+}
+.N2:hover {
+  background-color: #ffca3a;
+}
+.N3:hover {
+  background-color: #8ac926;
+}
+.N4:hover {
+  background-color: #1982c4;
+}
+.N5:hover {
+  background-color: #6a4c93;
+}
+
+.N1.active {
+  background-color: #ff595e;
+}
+.N2.active {
+  background-color: #ffca3a;
+}
+.N3.active {
+  background-color: #8ac926;
+}
+.N4.active {
+  background-color: #1982c4;
+}
+.N5.active {
+  background-color: #6a4c93;
+}

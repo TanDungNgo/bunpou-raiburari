@@ -112,11 +112,8 @@ function Header() {
             </>
           ) : (
             <>
-              <Button
-                primary
-                leftIcon={<FontAwesomeIcon icon={faSignIn} />}
-                to="/login"
-              >
+              <Button outline> Register</Button>
+              <Button className={cx("btn-login")} primary to="/login">
                 Log in
               </Button>
             </>
