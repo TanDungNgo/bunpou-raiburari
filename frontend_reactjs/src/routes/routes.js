@@ -12,6 +12,7 @@ import QuizPage from "~/pages/QuizPage/QuizPage";
 import ConversationPage from "~/pages/ConversationPage/ConversationPage";
 import HeaderOnly from "~/layouts/HeaderOnly/HeaderOnly";
 import CreateCardKanji from "~/pages/Admin/CreateCardKanji/CreateCardKanji";
+import CreateCardGrammar from "~/pages/Admin/CreateCardGrammar/CreateCardGrammar";
 
 // Public routes
 const publicRoutes = [
@@ -28,6 +29,11 @@ const publicRoutes = [
   {
     path: config.routes.createCardKanji,
     component: CreateCardKanji,
+    layout: HeaderOnly,
+  },
+  {
+    path: config.routes.createCardGrammar,
+    component: CreateCardGrammar,
     layout: HeaderOnly,
   },
 ];

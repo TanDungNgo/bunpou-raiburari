@@ -18,7 +18,7 @@ function ToolBox() {
           ></FontAwesomeIcon>
           <h4> Create CardKanji</h4>
         </Link>
-        <Link className={cx("btn")} to={config.routes.createCardKanji}>
+        <Link className={cx("btn")} to={config.routes.createCardGrammar}>
           <FontAwesomeIcon
             className={cx("icon")}
             icon={faCirclePlus}

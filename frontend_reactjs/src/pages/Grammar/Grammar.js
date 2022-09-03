@@ -15,14 +15,14 @@ function Grammar() {
       setGrammar(res.data.grammar);
     });
   }, []);
-  const renderStructure = grammar?.structure?.split("/").map((item, index) => {
+  const renderStructure = grammar?.structure?.split(";").map((item, index) => {
     return (
       <div key={index}>
         <p className={cx("text")}>{item}</p>
       </div>
     );
   });
-  const renderExample = grammar?.example?.split("/").map((item, index) => {
+  const renderExample = grammar?.example?.split(";").map((item, index) => {
     return (
       <div key={index}>
         <p>{item}</p>
@@ -58,7 +58,7 @@ function Grammar() {
           </div>
           <div className={cx("card-content")}>
             <div className={cx("content")}>
-              <div className={cx("box", "use", `${grammar.type}`)}>
+              <div className={cx("box", `${grammar.type}`)}>
                 <span>Cách dùng</span>
               </div>
             </div>
@@ -70,16 +70,15 @@ function Grammar() {
                 <span>Cấu trúc</span>
               </div>
             </div>
-            <div className={cx("structure")}> {renderStructure}</div>
+            <div className={cx("text")}> {renderStructure}</div>
           </div>
           <div className={cx("card-content")}>
             <div className={cx("content")}>
-              <div className={cx("box", "ex", `${grammar.type}`)}>
+              <div className={cx("box", `${grammar.type}`)}>
                 <span>Ví dụ</span>
               </div>
             </div>
-            {/* <p className={cx("text")}>{grammar.example}</p> */}
-            <div className={cx("example")}> {renderExample}</div>
+            <div className={cx("text")}> {renderExample}</div>
           </div>
           <div className={cx("card-footer", `${grammar.type}`)}></div>
         </div>

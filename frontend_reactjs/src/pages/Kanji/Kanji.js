@@ -49,6 +49,9 @@ function Kanji() {
       bookmark(formData);
     }
   };
+  const renderExample = kanji?.example?.split(";").map((item, index) => {
+    return <p key={index}>{item}</p>;
+  });
   return (
     <div className={cx("wrapper")}>
       {kanji ? (
@@ -89,11 +92,11 @@ function Kanji() {
           </div>
           <div className={cx("card-content")}>
             <div className={cx("content")}>
-              <div className={cx("box", "ex", `${kanji.type}`)}>
+              <div className={cx("box", `${kanji.type}`)}>
                 <span>Ví dụ</span>
               </div>
             </div>
-            <p className={cx("text")}>{kanji.example}</p>
+            <div className={cx("text")}>{renderExample}</div>
           </div>
           <div className={cx("card-footer", `${kanji.type}`)}></div>
         </div>

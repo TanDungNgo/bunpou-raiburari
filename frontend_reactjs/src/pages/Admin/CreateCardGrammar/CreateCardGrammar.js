@@ -4,17 +4,17 @@ import request from "~/utils/request";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
-import styles from "./CreateCardKanji.module.scss";
+import styles from "./CreateCardGrammar.module.scss";
 import Button from "~/components/Button/Button";
-import { createCardKanji } from "~/services/createService";
+import { createCardGrammar } from "~/services/createService";
 const cx = classNames.bind(styles);
 
-
-function CreateCardKanji() {
+function CreateCardGrammar() {
   const [listType, setListType] = useState(["N5", "N4", "N3", "N2", "N1"]);
   const [type, setType] = useState("N5");
   const [title, setTitle] = useState("");
   const [mean, setMean] = useState("");
+  const [use, setUse] = useState("");
   const [structure, setStructure] = useState("");
   const [example, setExample] = useState("");
   const renderType = () => {
@@ -36,9 +36,10 @@ function CreateCardKanji() {
     formData.append("type", type);
     formData.append("title", title);
     formData.append("mean", mean);
+    formData.append("use", use);
     formData.append("structure", structure);
     formData.append("example", example);
-    createCardKanji(formData);
+    createCardGrammar(formData);
   };
 
   return (
@@ -81,6 +82,18 @@ function CreateCardKanji() {
         <div className={cx("card-content")}>
           <div className={cx("content")}>
             <div className={cx("box", `${type}`)}>
+              <span>Cách dùng</span>
+            </div>
+          </div>
+          <input
+            type="text"
+            className={cx("text")}
+            onChange={(e) => setUse(e.target.value)}
+          ></input>
+        </div>
+        <div className={cx("card-content")}>
+          <div className={cx("content")}>
+            <div className={cx("box", `${type}`)}>
               <span>Cấu trúc</span>
             </div>
           </div>
@@ -92,7 +105,7 @@ function CreateCardKanji() {
         </div>
         <div className={cx("card-content")}>
           <div className={cx("content")}>
-            <div className={cx("box", `${type}`)}>
+            <div className={cx("box", "ex", `${type}`)}>
               <span>Ví dụ</span>
             </div>
           </div>
@@ -111,4 +124,4 @@ function CreateCardKanji() {
   );
 }
 
-export default CreateCardKanji;
+export default CreateCardGrammar;

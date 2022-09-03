@@ -1,0 +1,119 @@
+.wrapper {
+    padding: 20px;
+  }
+  
+  .flex {
+    margin-left: 80px;
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    border-radius: 4px;
+    border: 0.3rem solid var(--primary);
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .combobox {
+    background-color: #1b2a49;
+    border: 0;
+    width: 100px;
+    height: 25px;
+    padding: 2px;
+    border-radius: 4px;
+    text-align: center;
+    color: var(--white);
+    box-shadow: 0 2px 20px #e1e5ee;
+    cursor: pointer;
+  }
+  
+  .card {
+    margin: 30px 10px;
+    border-radius: 1rem;
+    box-shadow: 0 2px 20px #e1e5ee;
+  }
+  
+  .card-bookmark {
+    height: 25px;
+    padding: 5px;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+  }
+  
+  .btn-bookmark {
+    background-color: transparent;
+  }
+  
+  .card-bookmark .icon {
+    color: var(--white);
+    font-size: large;
+    cursor: pointer;
+  }
+  
+  .card-bookmark .icon.active {
+    color: yellow;
+  }
+  
+  .card-header {
+    display: flex;
+    border-bottom: 3px solid #eee;
+  }
+  
+  .card-title {
+    font-size: 25px;
+    font-weight: 900;
+    margin: 0px auto 25px auto;
+    color: #fff;
+    background-color: transparent;
+    border-bottom: 0.1rem solid var(--black);
+    text-align: center;
+  }
+  
+  .box {
+    color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px 10px;
+    font-weight: 700;
+    width: fit-content;
+  }
+  .N1 {
+    background-color: #ff595e;
+  }
+  .N2 {
+    background-color: #ffca3a;
+  }
+  .N3 {
+    background-color: #8ac926;
+  }
+  .N4 {
+    background-color: #1982c4;
+  }
+  .N5 {
+    background-color: #6a4c93;
+  }
+  
+  .card-content {
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 3px solid #eee;
+    width: 100%;
+    height: 80px;
+    font-weight: 500;
+  }
+  
+  .content {
+    width: 16%;
+  }
+  
+  .text {
+    margin-right: 10px;
+    border-bottom: 0.1rem solid var(--black);
+    width: 84%;
+  }
+    
+  .card-footer {
+    height: 10px;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+  
