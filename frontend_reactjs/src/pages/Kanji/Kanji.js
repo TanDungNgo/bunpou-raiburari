@@ -72,20 +72,26 @@ function Kanji() {
             <div className={cx("card-title")}>{kanji.title}</div>
           </div>
           <div className={cx("card-content")}>
-            <div className={cx("box", `${kanji.type}`)}>
-              <span>Ý nghĩa</span>
+            <div className={cx("content")}>
+              <div className={cx("box", `${kanji.type}`)}>
+                <span>Ý nghĩa</span>
+              </div>
             </div>
             <p className={cx("text")}>{kanji.mean}</p>
           </div>
           <div className={cx("card-content")}>
-            <div className={cx("box", `${kanji.type}`)}>
-              <span>Cấu trúc</span>
+            <div className={cx("content")}>
+              <div className={cx("box", `${kanji.type}`)}>
+                <span>Cấu trúc</span>
+              </div>
             </div>
             <p className={cx("text")}>{kanji.structure.split(";")} </p>
           </div>
           <div className={cx("card-content")}>
-            <div className={cx("box", "ex", `${kanji.type}`)}>
-              <span>Ví dụ</span>
+            <div className={cx("content")}>
+              <div className={cx("box", "ex", `${kanji.type}`)}>
+                <span>Ví dụ</span>
+              </div>
             </div>
             <p className={cx("text")}>{kanji.example}</p>
           </div>

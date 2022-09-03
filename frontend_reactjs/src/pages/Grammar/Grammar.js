@@ -37,7 +37,7 @@ function Grammar() {
     <div className={cx("wrapper")}>
       {grammar ? (
         <div className={cx("card")}>
-          <div className={cx("card_bookmark", `${grammar.type}`)}>
+          <div className={cx("card-bookmark", `${grammar.type}`)}>
             <button className={cx("btn-bookmark")} onClick={handleBookmark}>
               <FontAwesomeIcon
                 icon={faStar}
@@ -45,30 +45,38 @@ function Grammar() {
               ></FontAwesomeIcon>
             </button>
           </div>
-          <div className={cx("card_header", `${grammar.type}`)}>
-            <div className={cx("card_title")}>{grammar.title}</div>
+          <div className={cx("card-header", `${grammar.type}`)}>
+            <div className={cx("card-title")}>{grammar.title}</div>
           </div>
-          <div className={cx("card_content")}>
-            <div className={cx("box", `${grammar.type}`)}>
-              <span>Ý nghĩa</span>
+          <div className={cx("card-content")}>
+            <div className={cx("content")}>
+              <div className={cx("box", `${grammar.type}`)}>
+                <span>Ý nghĩa</span>
+              </div>
             </div>
             <p className={cx("text")}>{grammar.mean}</p>
           </div>
-          <div className={cx("card_content")}>
-            <div className={cx("box", "use", `${grammar.type}`)}>
-              <span>Cách dùng</span>
+          <div className={cx("card-content")}>
+            <div className={cx("content")}>
+              <div className={cx("box", "use", `${grammar.type}`)}>
+                <span>Cách dùng</span>
+              </div>
             </div>
             <p className={cx("text")}>{grammar.use}</p>
           </div>
-          <div className={cx("card_content")}>
-            <div className={cx("box", `${grammar.type}`)}>
-              <span>Cấu trúc</span>
+          <div className={cx("card-content")}>
+            <div className={cx("content")}>
+              <div className={cx("box", `${grammar.type}`)}>
+                <span>Cấu trúc</span>
+              </div>
             </div>
             <div className={cx("structure")}> {renderStructure}</div>
           </div>
-          <div className={cx("card_content")}>
-            <div className={cx("box", "ex", `${grammar.type}`)}>
-              <span>Ví dụ</span>
+          <div className={cx("card-content")}>
+            <div className={cx("content")}>
+              <div className={cx("box", "ex", `${grammar.type}`)}>
+                <span>Ví dụ</span>
+              </div>
             </div>
             {/* <p className={cx("text")}>{grammar.example}</p> */}
             <div className={cx("example")}> {renderExample}</div>

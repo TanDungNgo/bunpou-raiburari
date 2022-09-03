@@ -8,7 +8,7 @@
   box-shadow: 0 2px 20px #e1e5ee;
 }
 
-.card_bookmark {
+.card-bookmark {
   height: 25px;
   padding: 5px;
   border-top-right-radius: 1rem;
@@ -19,22 +19,22 @@
   background-color: transparent;
 }
 
-.card_bookmark .icon {
+.card-bookmark .icon {
   color: var(--white);
   font-size: large;
   cursor: pointer;
 }
 
-.card_bookmark .icon.active {
+.card-bookmark .icon.active {
   color: yellow;
 }
 
-.card_header {
+.card-header {
   display: flex;
   border-bottom: 3px solid #eee;
 }
 
-.card_title {
+.card-title {
   font-size: 25px;
   font-weight: 900;
   margin: 0px auto 25px auto;
@@ -65,12 +65,16 @@
   background-color: #6a4c93;
 }
 
-.card_content {
+.card-content {
   display: inline-flex;
   align-items: center;
   border-bottom: 3px solid #eee;
   width: 100%;
   font-weight: 500;
+}
+
+.content {
+  width: 15%;
 }
 
 .text {

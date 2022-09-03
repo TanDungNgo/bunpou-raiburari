@@ -9,6 +9,7 @@ const routes = {
   quiz: "/quiz",
   bookmark: "/bookmark",
   conservation: "/conservation",
+  createCardKanji: "/createCardKanji"
 };
 
 export default routes;

@@ -10,11 +10,13 @@ import Login from "~/pages/Login/Login";
 import Bookmark from "~/pages/Bookmark/Bookmark";
 import QuizPage from "~/pages/QuizPage/QuizPage";
 import ConversationPage from "~/pages/ConversationPage/ConversationPage";
+import HeaderOnly from "~/layouts/HeaderOnly/HeaderOnly";
+import CreateCardKanji from "~/pages/Admin/CreateCardKanji/CreateCardKanji";
 
 // Public routes
 const publicRoutes = [
   { path: config.routes.home, component: Home },
-  { path: config.routes.profile, component: Profile },
+  { path: config.routes.profile, component: Profile, layout: HeaderOnly },
   { path: config.routes.listKanji, component: ListKanji },
   { path: config.routes.listGrammar, component: ListGrammar },
   { path: config.routes.kanji, component: Kanji },
@@ -23,6 +25,11 @@ const publicRoutes = [
   { path: config.routes.bookmark, component: Bookmark },
   { path: config.routes.conservation, component: ConversationPage },
   { path: config.routes.login, component: Login, layout: null },
+  {
+    path: config.routes.createCardKanji,
+    component: CreateCardKanji,
+    layout: HeaderOnly,
+  },
 ];
 
 const privateRoutes = [];
