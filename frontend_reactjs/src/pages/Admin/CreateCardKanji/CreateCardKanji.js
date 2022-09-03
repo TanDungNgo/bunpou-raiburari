@@ -6,11 +6,16 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
 import styles from "./CreateCardKanji.module.scss";
 import Button from "~/components/Button/Button";
+import { createCardKanji } from "~/services/createService";
 const cx = classNames.bind(styles);
 
 function CreateCardKanji() {
   const [listType, setListType] = useState(["N5", "N4", "N3", "N2", "N1"]);
   const [type, setType] = useState("N5");
+  const [title, setTitle] = useState("");
+  const [mean, setMean] = useState("");
+  const [structure, setStructure] = useState("");
+  const [example, setExample] = useState("");
   const renderType = () => {
     return listType.map((item, index) => {
       return (
@@ -24,6 +29,17 @@ function CreateCardKanji() {
   const handleChange = (e) => {
     setType(e.target.value);
   };
+
+  const handleSubmit = () => {
+    const formData = new FormData();
+    formData.append("type", type);
+    formData.append("title", title);
+    formData.append("mean", mean);
+    formData.append("structure", structure);
+    formData.append("example", example);
+    createCardKanji(formData);
+  };
+
   return (
     <div className={cx("wrapper")}>
       <div className={cx("flex")}>
@@ -46,6 +62,7 @@ function CreateCardKanji() {
             type="text"
             placeholder="Title"
             className={cx("card-title")}
+            onChange={(e) => setTitle(e.target.value)}
           ></input>
         </div>
         <div className={cx("card-content")}>
@@ -54,7 +71,11 @@ function CreateCardKanji() {
               <span>Ý nghĩa</span>
             </div>
           </div>
-          <input type="text" className={cx("text")}></input>
+          <input
+            type="text"
+            className={cx("text")}
+            onChange={(e) => setMean(e.target.value)}
+          ></input>
         </div>
         <div className={cx("card-content")}>
           <div className={cx("content")}>
@@ -62,7 +83,11 @@ function CreateCardKanji() {
               <span>Cấu trúc</span>
             </div>
           </div>
-          <input type="text" className={cx("text")}></input>
+          <input
+            type="text"
+            className={cx("text")}
+            onChange={(e) => setStructure(e.target.value)}
+          ></input>
         </div>
         <div className={cx("card-content")}>
           <div className={cx("content")}>
@@ -70,11 +95,17 @@ function CreateCardKanji() {
               <span>Ví dụ</span>
             </div>
           </div>
-          <input type="text" className={cx("text")}></input>
+          <input
+            type="text"
+            className={cx("text")}
+            onChange={(e) => setExample(e.target.value)}
+          ></input>
         </div>
         <div className={cx("card-footer", `${type}`)}></div>
       </div>
-      <Button outline>Create Card</Button>
+      <Button outline onClick={handleSubmit}>
+        Create Card
+      </Button>
     </div>
   );
 }

@@ -34,22 +34,19 @@ function Signup({ className, children }) {
           <input
             type="text"
             placeholder="Username:"
-            required
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="text"
             placeholder="Email:"
-            required
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password:"
-            required
             onChange={(e) => setPassword(e.target.value)}
           />
-          <input type="password" placeholder="Repeat password:" required />
+          <input type="password" placeholder="Repeat password:" />
           <Button outline className={cx("btn-register")}>
             Register
           </Button>
