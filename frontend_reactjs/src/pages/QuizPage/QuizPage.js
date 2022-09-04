@@ -21,7 +21,7 @@ function QuizPage() {
     return content.map((item, index) => {
       return (
         <div
-          id={index}
+          key={index}
           className={cx("card")}
           onClick={() => handleClick(item)}
         >
