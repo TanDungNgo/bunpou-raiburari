@@ -1,7 +1,13 @@
-.quiz {
+.wrapper {
   margin: 10px;
-  padding: 5px;
-  height: 500px;
+  padding: 10px;
+  box-shadow: 0 2px 20px #e1e5ee;
+  border-radius: 1rem;
+  height: 520px;
+  border: 0.1rem solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .quiz-box.active,
@@ -14,8 +20,6 @@
 
 .btn-start {
   position: absolute;
-  top: 50%;
-  left: 50%;
   box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -26,7 +30,7 @@
   width: 500px;
   background: linear-gradient(to right, #00b4db, #0083b0);
   border-radius: 1rem;
-  margin: 20px 50px;
+  margin: 30px 10px;
   box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2);
   opacity: 0;
   pointer-events: none;
@@ -186,9 +190,9 @@ footer .next-btn:hover {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: 50px;
   background: #fff;
   width: 450px;
+  margin-top: 25px;
   padding: 25px 30px;
   border-radius: 5px;
   display: flex;

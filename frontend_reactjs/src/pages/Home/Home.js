@@ -5,8 +5,13 @@ const cx = classNames.bind(styles);
 
 function Home() {
   return (
-    <div className={cx("home")}>
-      <h2>Home page</h2>
+    <div>
+      <div className={cx("wrapper")}>
+        <img className={cx("image")} src="/img/hiragana.jpg"></img>
+      </div>
+      <div className={cx("wrapper")}>
+        <img className={cx("image")} src="/img/katakana.jpg"></img>
+      </div>
     </div>
   );
 }

@@ -16,38 +16,40 @@ const cx = classNames.bind(styles);
 function Sidebar() {
   return (
     <aside className={cx("wrapper")}>
-      <Menu>
-        <MenuItem
-          title="Home"
-          to={config.routes.home}
-          icon={<FontAwesomeIcon icon={faHome} />}
-        ></MenuItem>
-        <MenuItem
-          title="Kanji"
-          to={config.routes.listKanji}
-          icon={<FontAwesomeIcon icon={faBook} />}
-        ></MenuItem>
-        <MenuItem
-          title="Grammar"
-          to={config.routes.listGrammar}
-          icon={<FontAwesomeIcon icon={faBook} />}
-        ></MenuItem>
-        <MenuItem
-          title="Bookmark"
-          to={config.routes.bookmark}
-          icon={<FontAwesomeIcon icon={faBookBookmark} />}
-        ></MenuItem>
-        <MenuItem
-          title="Conversation"
-          to={config.routes.conservation}
-          icon={<FontAwesomeIcon icon={faMessage} />}
-        ></MenuItem>
-        <MenuItem
-          title="Quiz"
-          to={config.routes.quiz}
-          icon={<FontAwesomeIcon icon={faGamepad} />}
-        ></MenuItem>
-      </Menu>
+      <div className={cx("sidebar")}>
+        <Menu>
+          <MenuItem
+            title="Home"
+            to={config.routes.home}
+            icon={<FontAwesomeIcon icon={faHome} />}
+          ></MenuItem>
+          <MenuItem
+            title="Kanji"
+            to={config.routes.listKanji}
+            icon={<FontAwesomeIcon icon={faBook} />}
+          ></MenuItem>
+          <MenuItem
+            title="Grammar"
+            to={config.routes.listGrammar}
+            icon={<FontAwesomeIcon icon={faBook} />}
+          ></MenuItem>
+          <MenuItem
+            title="Bookmark"
+            to={config.routes.bookmark}
+            icon={<FontAwesomeIcon icon={faBookBookmark} />}
+          ></MenuItem>
+          <MenuItem
+            title="Conversation"
+            to={config.routes.conservation}
+            icon={<FontAwesomeIcon icon={faMessage} />}
+          ></MenuItem>
+          <MenuItem
+            title="Quiz"
+            to={config.routes.quiz}
+            icon={<FontAwesomeIcon icon={faGamepad} />}
+          ></MenuItem>
+        </Menu>
+      </div>
     </aside>
   );
 }

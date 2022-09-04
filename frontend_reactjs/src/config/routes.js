@@ -10,7 +10,9 @@ const routes = {
   bookmark: "/bookmark",
   conservation: "/conservation",
   createCardKanji: "/createCardKanji",
-  createCardGrammar: "/createCardGrammar"
+  createCardGrammar: "/createCardGrammar",
+  quizKanji: "/quiz/kanji",
+  quizGrammar: "/quiz/grammar",
 };
 
 export default routes;

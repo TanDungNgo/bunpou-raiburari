@@ -158,7 +158,7 @@ function Quiz() {
   }
 
   return (
-    <div className={cx("quiz")}>
+    <div className={cx("wrapper")}>
       {/* Start button */}
       <div className={cx("btn-start")}>
         <Button primary onClick={Start}>
