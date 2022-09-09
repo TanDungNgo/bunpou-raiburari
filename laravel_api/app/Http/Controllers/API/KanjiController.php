@@ -29,10 +29,17 @@ class KanjiController extends Controller
     public function show($id)
     {
         $kanji = Kanji::find($id);
-        return response()->json([
-            'status' => 200,
-            'Kanji' => $kanji,
-        ]);
+        if ($kanji) {
+            return response()->json([
+                'status' => 200,
+                'kanji' => $kanji
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No ID Found',
+            ]);
+        }
     }
     public function searchType($type)
     {
@@ -81,5 +88,42 @@ class KanjiController extends Controller
             'status' => 200,
             'message' => 'Kanji Deleted Successfully',
         ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'type' => 'required',
+            'title' => 'required',
+            'mean' => 'required',
+            'structure' => 'required',
+            'example' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'validate_err' => $validator->messages(),
+            ]);
+        } else {
+            $kanji = Kanji::find($id);
+            if ($kanji) {
+                $kanji->type = $request->input('type');
+                $kanji->title = $request->input('title');
+                $kanji->mean = $request->input('mean');
+                $kanji->structure = $request->input('structure');
+                $kanji->example = $request->input('example');
+                $kanji->update();
+
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Kanji Updated Successfully',
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'No ID Found',
+                ]);
+            }
+        }
     }
 }

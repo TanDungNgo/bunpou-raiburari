@@ -17,7 +17,7 @@ function Kanji() {
 
   useEffect(() => {
     request.get(`kanji/${id}`).then((res) => {
-      setKanji(res.data.Kanji);
+      setKanji(res.data.kanji);
     });
   }, []);
 
@@ -77,7 +77,7 @@ function Kanji() {
           <div className={cx("card-content")}>
             <div className={cx("content")}>
               <div className={cx("box", `${kanji.type}`)}>
-                <span>Ý nghĩa</span>
+                <span>Mean</span>
               </div>
             </div>
             <p className={cx("text")}>{kanji.mean}</p>
@@ -85,7 +85,7 @@ function Kanji() {
           <div className={cx("card-content")}>
             <div className={cx("content")}>
               <div className={cx("box", `${kanji.type}`)}>
-                <span>Cấu trúc</span>
+                <span>Structure</span>
               </div>
             </div>
             <p className={cx("text")}>{kanji.structure.split(";")} </p>
@@ -93,7 +93,7 @@ function Kanji() {
           <div className={cx("card-content")}>
             <div className={cx("content")}>
               <div className={cx("box", `${kanji.type}`)}>
-                <span>Ví dụ</span>
+                <span>Example</span>
               </div>
             </div>
             <div className={cx("text")}>{renderExample}</div>

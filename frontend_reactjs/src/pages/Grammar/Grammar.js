@@ -51,7 +51,7 @@ function Grammar() {
           <div className={cx("card-content")}>
             <div className={cx("content")}>
               <div className={cx("box", `${grammar.type}`)}>
-                <span>Ý nghĩa</span>
+                <span>Mean</span>
               </div>
             </div>
             <p className={cx("text")}>{grammar.mean}</p>
@@ -59,7 +59,7 @@ function Grammar() {
           <div className={cx("card-content")}>
             <div className={cx("content")}>
               <div className={cx("box", `${grammar.type}`)}>
-                <span>Cách dùng</span>
+                <span>Use</span>
               </div>
             </div>
             <p className={cx("text")}>{grammar.use}</p>
@@ -67,7 +67,7 @@ function Grammar() {
           <div className={cx("card-content")}>
             <div className={cx("content")}>
               <div className={cx("box", `${grammar.type}`)}>
-                <span>Cấu trúc</span>
+                <span>Structure</span>
               </div>
             </div>
             <div className={cx("text")}> {renderStructure}</div>
@@ -75,7 +75,7 @@ function Grammar() {
           <div className={cx("card-content")}>
             <div className={cx("content")}>
               <div className={cx("box", `${grammar.type}`)}>
-                <span>Ví dụ</span>
+                <span>Example</span>
               </div>
             </div>
             <div className={cx("text")}> {renderExample}</div>

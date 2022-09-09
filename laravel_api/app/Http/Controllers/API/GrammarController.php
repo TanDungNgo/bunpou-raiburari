@@ -21,10 +21,17 @@ class GrammarController extends Controller
     public function show($id)
     {
         $grammar = Grammar::find($id);
-        return response()->json([
-            'status' => 200,
-            'grammar' => $grammar
-        ]);
+        if ($grammar) {
+            return response()->json([
+                'status' => 200,
+                'grammar' => $grammar
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No ID Found',
+            ]);
+        }
     }
     public function searchType($type)
     {
@@ -74,5 +81,44 @@ class GrammarController extends Controller
             'status' => 200,
             'message' => 'Grammar Deleted Successfully',
         ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'type' => 'required',
+            'title' => 'required',
+            'mean' => 'required',
+            'use' => 'required',
+            'structure' => 'required',
+            'example' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'validate_err' => $validator->messages(),
+            ]);
+        } else {
+            $grammar = Grammar::find($id);
+            if ($grammar) {
+                $grammar->type = $request->input('type');
+                $grammar->title = $request->input('title');
+                $grammar->mean = $request->input('mean');
+                $grammar->use = $request->input('use');
+                $grammar->structure = $request->input('structure');
+                $grammar->example = $request->input('example');
+                $grammar->update();
+
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Grammar Updated Successfully',
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'No ID Found',
+                ]);
+            }
+        }
     }
 }

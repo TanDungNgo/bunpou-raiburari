@@ -15,6 +15,8 @@ import CreateCardKanji from "~/pages/Admin/CreateCardKanji/CreateCardKanji";
 import CreateCardGrammar from "~/pages/Admin/CreateCardGrammar/CreateCardGrammar";
 import SecondLayout from "~/layouts/SecondLayout/SecondLayout";
 import Quiz from "~/components/Quiz/Quiz";
+import EditCardGrammar from "~/pages/Admin/EditCardGrammar/EditCardGrammar";
+import EditCardKanji from "~/pages/Admin/EditCardKanji/EditCardKanji";
 
 // Public routes
 const publicRoutes = [
@@ -47,6 +49,16 @@ const publicRoutes = [
     path: config.routes.quizGrammar,
     component: Quiz,
     layout: HeaderOnly,
+  },
+  {
+    path: config.routes.editCardGrammar,
+    component: EditCardGrammar,
+    layout: SecondLayout,
+  },
+  {
+    path: config.routes.editCardKanji,
+    component: EditCardKanji,
+    layout: SecondLayout,
   },
 ];
 

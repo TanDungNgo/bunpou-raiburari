@@ -14,7 +14,6 @@ export const createCardKanji = async (formData) => {
         window.location.reload();
       });
     } else {
-      console.log(res);
       swal({
         title: "Error!",
         // text: "",
@@ -38,7 +37,6 @@ export const createCardGrammar = async (formData) => {
         window.location.reload();
       });
     } else {
-      console.log(res);
       swal({
         title: "Error!",
         // text: "",
