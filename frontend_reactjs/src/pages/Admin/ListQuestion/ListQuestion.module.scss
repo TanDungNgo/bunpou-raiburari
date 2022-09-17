@@ -1,0 +1,68 @@
+.wrapper {
+  padding: 10px;
+  margin: 20px;
+  height: auto;
+  margin-left: 20px;
+  box-shadow: 0 2px 20px #e1e5ee;
+  border-radius: 0.5rem;
+  border: 0.1rem solid var(--primary);
+}
+
+.table {
+  border-radius: 0.5rem;
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.table.header {
+  background-color: var(--primary);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  font-weight: 700;
+}
+.col1 {
+  width: 20%;
+}
+.col2 {
+  width: 60%;
+}
+.col3 {
+  width: 20%;
+}
+.table.row {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+.btn-action {
+  font-size: 2rem;
+  padding-right: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.btn-action.view {
+  color: #004075;
+}
+.btn-action.edit {
+  color: #23903c;
+}
+.btn-action.remove {
+  color: #a42834;
+}
+.btn-action.add {
+  color: var(--primary);
+  font-size: 3rem;
+  margin-top: -10px;
+  margin-left: 5px;
+}
+
+.swal {
+  width: 700px;
+}
+.swal button {
+  height: 50px;
+  width: 100px;
+}

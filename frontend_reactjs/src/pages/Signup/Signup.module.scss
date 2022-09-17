@@ -28,11 +28,15 @@
   float: left;
   width: 400px;
   height: 100%;
-  padding: 80px 20px;
+  padding: 50px 20px;
   background-color: var(--white);
   text-align: center;
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
+}
+
+.title{
+  margin: 20px;
 }
 
 .form-signup input {

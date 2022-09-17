@@ -15,6 +15,8 @@ const routes = {
   editCardGrammar: "/editCardGrammar/:id",
   quizKanji: "/quiz/kanji",
   quizGrammar: "/quiz/grammar",
+  listQuestion: "/listQuestion",
+  createQuestion: "/createQuestion",
 };
 
 export default routes;

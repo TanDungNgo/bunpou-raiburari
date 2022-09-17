@@ -17,6 +17,8 @@ import SecondLayout from "~/layouts/SecondLayout/SecondLayout";
 import Quiz from "~/components/Quiz/Quiz";
 import EditCardGrammar from "~/pages/Admin/EditCardGrammar/EditCardGrammar";
 import EditCardKanji from "~/pages/Admin/EditCardKanji/EditCardKanji";
+import CreateQuestion from "~/pages/Admin/CreateQuestion/CreateQuestion";
+import ListQuestion from "~/pages/Admin/ListQuestion/ListQuestion";
 
 // Public routes
 const publicRoutes = [
@@ -58,6 +60,16 @@ const publicRoutes = [
   {
     path: config.routes.editCardKanji,
     component: EditCardKanji,
+    layout: SecondLayout,
+  },
+  {
+    path: config.routes.listQuestion,
+    component: ListQuestion,
+    layout: SecondLayout,
+  },
+  {
+    path: config.routes.createQuestion,
+    component: CreateQuestion,
     layout: SecondLayout,
   },
 ];

@@ -29,7 +29,7 @@ function Signup({ className, children }) {
   return (
     <div className={cx("container", className)}>
       <div className={cx("form-signup")}>
-        <h2>Create your account</h2>
+        <h2 className={cx("title")}>Create your account</h2>
         <form onSubmit={handleSignup}>
           <input
             type="text"
