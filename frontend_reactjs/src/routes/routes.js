@@ -17,7 +17,7 @@ import SecondLayout from "~/layouts/SecondLayout/SecondLayout";
 import Quiz from "~/components/Quiz/Quiz";
 import EditCardGrammar from "~/pages/Admin/EditCardGrammar/EditCardGrammar";
 import EditCardKanji from "~/pages/Admin/EditCardKanji/EditCardKanji";
-import CreateQuestion from "~/pages/Admin/CreateQuestion/CreateQuestion";
+import CreateAnswer from "~/pages/Admin/CreateAnswer/CreateAnswer";
 import ListQuestion from "~/pages/Admin/ListQuestion/ListQuestion";
 
 // Public routes
@@ -27,7 +27,7 @@ const publicRoutes = [
   { path: config.routes.listGrammar, component: ListGrammar },
   { path: config.routes.kanji, component: Kanji },
   { path: config.routes.grammar, component: Grammar },
-  { path: config.routes.quiz, component: QuizPage },
+  { path: config.routes.quizPage, component: QuizPage },
   { path: config.routes.bookmark, component: Bookmark },
   { path: config.routes.conservation, component: ConversationPage },
   { path: config.routes.login, component: Login, layout: null },
@@ -43,12 +43,7 @@ const publicRoutes = [
     layout: SecondLayout,
   },
   {
-    path: config.routes.quizKanji,
-    component: Quiz,
-    layout: HeaderOnly,
-  },
-  {
-    path: config.routes.quizGrammar,
+    path: config.routes.quiz,
     component: Quiz,
     layout: HeaderOnly,
   },
@@ -68,8 +63,8 @@ const publicRoutes = [
     layout: SecondLayout,
   },
   {
-    path: config.routes.createQuestion,
-    component: CreateQuestion,
+    path: config.routes.createAnswer,
+    component: CreateAnswer,
     layout: SecondLayout,
   },
 ];

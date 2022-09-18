@@ -11,6 +11,7 @@ const cx = classNames.bind(styles);
 
 
 function CreateCardKanji() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const [listType, setListType] = useState(["N5", "N4", "N3", "N2", "N1"]);
   const [type, setType] = useState("N5");
   const [title, setTitle] = useState("");
@@ -38,6 +39,7 @@ function CreateCardKanji() {
     formData.append("mean", mean);
     formData.append("structure", structure);
     formData.append("example", example);
+    formData.append("user_id", currentUser.id);
     createCardKanji(formData);
   };
 
@@ -69,7 +71,7 @@ function CreateCardKanji() {
         <div className={cx("card-content")}>
           <div className={cx("content")}>
             <div className={cx("box", `${type}`)}>
-              <span>Ý nghĩa</span>
+              <span>Mean</span>
             </div>
           </div>
           <input
@@ -81,7 +83,7 @@ function CreateCardKanji() {
         <div className={cx("card-content")}>
           <div className={cx("content")}>
             <div className={cx("box", `${type}`)}>
-              <span>Cấu trúc</span>
+              <span>Structure</span>
             </div>
           </div>
           <input
@@ -93,7 +95,7 @@ function CreateCardKanji() {
         <div className={cx("card-content")}>
           <div className={cx("content")}>
             <div className={cx("box", `${type}`)}>
-              <span>Ví dụ</span>
+              <span>Example</span>
             </div>
           </div>
           <input

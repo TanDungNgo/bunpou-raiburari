@@ -64,6 +64,7 @@ class GrammarController extends Controller
             $grammar->use = $request->input('use');
             $grammar->structure = $request->input('structure');
             $grammar->example = $request->input('example');
+            $grammar->user_id = $request->input('user_id');
             $grammar->save();
         }
 

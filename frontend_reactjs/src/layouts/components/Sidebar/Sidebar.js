@@ -45,7 +45,7 @@ function Sidebar() {
           ></MenuItem>
           <MenuItem
             title="Quiz"
-            to={config.routes.quiz}
+            to={config.routes.quizPage}
             icon={<FontAwesomeIcon icon={faGamepad} />}
           ></MenuItem>
         </Menu>

@@ -10,6 +10,7 @@ import { createCardGrammar } from "~/services/createService";
 const cx = classNames.bind(styles);
 
 function CreateCardGrammar() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const [listType, setListType] = useState(["N5", "N4", "N3", "N2", "N1"]);
   const [type, setType] = useState("N5");
   const [title, setTitle] = useState("");
@@ -39,6 +40,7 @@ function CreateCardGrammar() {
     formData.append("use", use);
     formData.append("structure", structure);
     formData.append("example", example);
+    formData.append("user_id", currentUser.id);
     createCardGrammar(formData);
   };
 
@@ -70,7 +72,7 @@ function CreateCardGrammar() {
         <div className={cx("card-content")}>
           <div className={cx("content")}>
             <div className={cx("box", `${type}`)}>
-              <span>Ý nghĩa</span>
+              <span>Mean</span>
             </div>
           </div>
           <input
@@ -82,7 +84,7 @@ function CreateCardGrammar() {
         <div className={cx("card-content")}>
           <div className={cx("content")}>
             <div className={cx("box", `${type}`)}>
-              <span>Cách dùng</span>
+              <span>Use</span>
             </div>
           </div>
           <input
@@ -94,7 +96,7 @@ function CreateCardGrammar() {
         <div className={cx("card-content")}>
           <div className={cx("content")}>
             <div className={cx("box", `${type}`)}>
-              <span>Cấu trúc</span>
+              <span>Structure</span>
             </div>
           </div>
           <input
@@ -106,7 +108,7 @@ function CreateCardGrammar() {
         <div className={cx("card-content")}>
           <div className={cx("content")}>
             <div className={cx("box", "ex", `${type}`)}>
-              <span>Ví dụ</span>
+              <span>Example</span>
             </div>
           </div>
           <input

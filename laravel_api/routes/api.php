@@ -43,11 +43,13 @@ Route::delete('/delete-grammar/{id}', [GrammarController::class, 'destroy']);
 Route::put('/update-grammar/{id}', [GrammarController::class, 'update']);
 
 // Question
-Route::get('/questions', [QuestionController::class, 'index']);
+Route::get('/questions/{type}', [QuestionController::class, 'index']);
 Route::get('/list-question', [QuestionController::class, 'show']);
 Route::post('/add-question', [QuestionController::class, 'store']);
 Route::get('/edit-question/{id}', [QuestionController::class, 'edit']);
 Route::put('/update-question/{id}', [QuestionController::class, 'update']);
+Route::get('/question/{id}', [QuestionController::class, 'questionFindId']);
+Route::post('/add-answer/{id}', [QuestionController::class, 'createAnswer']);
 
 // User
 Route::post('/users/login', [UserController::class, 'onLogin']);

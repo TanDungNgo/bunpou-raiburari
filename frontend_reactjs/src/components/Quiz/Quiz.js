@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styles from "./Quiz.module.scss";
 import classNames from "classnames/bind";
@@ -16,6 +16,7 @@ import swal from "sweetalert";
 const cx = classNames.bind(styles);
 
 function Quiz() {
+  const { type } = useParams();
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   // const currentUser = useSelector((state) => state.auth.login.currentUser);
@@ -34,7 +35,8 @@ function Quiz() {
   const resultBox = document.getElementsByClassName(cx("result-box"));
 
   useEffect(() => {
-    request.get("questions").then((res) => {
+    request.get(`questions/${type}`).then((res) => {
+      console.log(res);
       setQuestions(res.questions);
     });
   }, []);

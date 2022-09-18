@@ -71,6 +71,7 @@ class KanjiController extends Controller
             $kanji->mean = $request->input('mean');
             $kanji->structure = $request->input('structure');
             $kanji->example = $request->input('example');
+            $kanji->user_id = $request->input('user_id');
             $kanji->save();
         }
 
