@@ -4,6 +4,7 @@ import Button from "~/components/Button/Button";
 import request from "~/utils/request";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import swal from "sweetalert";
 
 const cx = classNames.bind(styles);
 function CreateAnswer() {
@@ -14,8 +15,20 @@ function CreateAnswer() {
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
   const [answer4, setAnswer4] = useState("");
+  // Kiểm tra câu hỏi có đáp chưa, nếu có thì đưa ra
+  const [check, setCheck] = useState(false);
   useEffect(() => {
     request.get(`question/${id}`).then((res) => {
+      if (res.data.answers.length !== 0) {
+        setCheck(true);
+        setAnswer1(res.data.answers[0].text);
+        setAnswer2(res.data.answers[1].text);
+        setAnswer3(res.data.answers[2].text);
+        setAnswer4(res.data.answers[3].text);
+        for (let i = 0; i < res.data.answers.length; i++) {
+          if (res.data.answers[i].isCorrect == 1) setCorrectAnswer(i + 1);
+        }
+      }
       setQuestion(res.data.question);
     });
   }, []);
@@ -26,6 +39,7 @@ function CreateAnswer() {
     Answers.push(answer2);
     Answers.push(answer3);
     Answers.push(answer4);
+    var count = 0;
     for (let i = 0; i < Answers.length; i++) {
       let isCorrect = false;
       if (i == correctAnswer - 1) isCorrect = true;
@@ -34,9 +48,24 @@ function CreateAnswer() {
       formData.append("isCorrect", isCorrect);
       formData.append("question_id", id);
       request.post(`add-answer/${id}`, formData).then((res) => {
-        console.log(res.data);
+        if (res.data.status == 200) {
+          count++;
+          if (count == 4) {
+            swal({
+              title: "Success!",
+              text: "Added answers success",
+              icon: "success",
+            }).then(() => {
+              window.location.reload();
+            });
+          }
+        }
       });
     }
+  };
+
+  const handleUpdate = () => {
+    console.log("Update");
   };
   return (
     <div className={cx("wrapper")}>
@@ -57,6 +86,7 @@ function CreateAnswer() {
               <input
                 type="text"
                 className={cx("input-text")}
+                value={answer1}
                 placeholder="Answer 1"
                 onChange={(e) => setAnswer1(e.target.value)}
               ></input>
@@ -65,6 +95,7 @@ function CreateAnswer() {
               <input
                 type="text"
                 className={cx("input-text")}
+                value={answer2}
                 placeholder="Answer 2"
                 onChange={(e) => setAnswer2(e.target.value)}
               ></input>
@@ -73,6 +104,7 @@ function CreateAnswer() {
               <input
                 type="text"
                 className={cx("input-text")}
+                value={answer3}
                 placeholder="Answer 3"
                 onChange={(e) => setAnswer3(e.target.value)}
               ></input>
@@ -81,6 +113,7 @@ function CreateAnswer() {
               <input
                 type="text"
                 className={cx("input-text")}
+                value={answer4}
                 placeholder="Answer 4"
                 onChange={(e) => setAnswer4(e.target.value)}
               ></input>
@@ -91,6 +124,7 @@ function CreateAnswer() {
             <select
               className={cx("combobox")}
               onChange={(e) => setCorrectAnswer(e.target.value)}
+              value={correctAnswer}
             >
               <option value="1">1</option>
               <option value="2">2</option>
@@ -105,9 +139,15 @@ function CreateAnswer() {
               <p>1</p>of<p>1</p>Question
             </span>
           </div>
-          <Button outline className={cx("next-btn")} onClick={handleSubmit}>
-            Done
-          </Button>
+          {check ? (
+            <Button outline className={cx("next-btn")} onClick={handleUpdate}>
+              Done
+            </Button>
+          ) : (
+            <Button outline className={cx("next-btn")} onClick={handleSubmit}>
+              Done
+            </Button>
+          )}
         </footer>
       </div>
     </div>

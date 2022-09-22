@@ -58,17 +58,17 @@ function ListQuestion() {
           },
         }).then((type) => {
           if (type != null) {
-            if (
-              type != "kanji" ||
-              type != "grammar" ||
-              type != "conversation"
-            ) {
-              swal({
-                text: "Type: kanji, grammar or conversation",
-                icon: "info",
-              });
-              return;
-            }
+            // if (
+            //   type != "kanji" ||
+            //   type != "grammar" ||
+            //   type != "conversation"
+            // ) {
+            //   swal({
+            //     text: "Type: kanji, grammar or conversation",
+            //     icon: "info",
+            //   });
+            //   return;
+            // }
             const formData = new FormData();
             formData.append("text", text);
             formData.append("type", type);

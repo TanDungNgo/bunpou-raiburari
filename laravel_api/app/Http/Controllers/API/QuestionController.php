@@ -107,9 +107,14 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
         if ($question) {
+            $answers = DB::table('answers')
+                ->select("answers.id", "answers.text", "answers.isCorrect")
+                ->where("answers.question_id", $question->id)
+                ->get();
             return response()->json([
                 'status' => 200,
-                'question' => $question
+                'question' => $question,
+                'answers' => $answers,
             ]);
         } else {
             return response()->json([
