@@ -85,23 +85,20 @@ class QuestionController extends Controller
         //         'message' => 'You need to enter question',
         //     ]);
         // }
-        // $question = Question::find($id);
-        // if ($question) {
-        //     $question->text = $request->input('text');
-        //     $question->update();
-        //     return response()->json([
-        //         'status' => 200,
-        //         'message' => 'Question Updated Successfully',
-        //     ]);
-        // } else {
-        //     return response()->json([
-        //         'status' => 404,
-        //         'message' => 'No ID Found',
-        //     ]);
-        // }
-        // return response()->json([
-        //     'message' =>  $request->input('text'),
-        // ]);
+        $question = Question::find($id);
+        if ($question) {
+            $question->text = $request->input('text');
+            $question->update();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Question Updated Successfully',
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No ID Found',
+            ]);
+        }
     }
     public function questionFindId($id)
     {
@@ -136,5 +133,25 @@ class QuestionController extends Controller
         return response()->json([
             'status' => 200,
         ]);
+    }
+    public function updateAnswer(Request $request, $id)
+    {
+        $answer = Answer::find($id);
+        if ($answer) {
+            $answer->text = $request->input('text');
+            if ($request->input('isCorrect') == "true")
+                $answer->isCorrect = true;
+            else
+                $answer->isCorrect = false;
+            $answer->update();
+            return response()->json([
+                'status' => 200,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'No ID Found',
+            ]);
+        }
     }
 }

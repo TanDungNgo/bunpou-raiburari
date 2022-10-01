@@ -8,7 +8,7 @@ const content = ["kanji", "grammar", "conversation"];
 function QuizPage() {
   const navigate = useNavigate();
   const handleClick = (item) => {
-    if (item === content[2]) {
+    if (item === content[2] || item === content[1]) {
       swal({
         text: "Sorry this feature is being updated!",
       });

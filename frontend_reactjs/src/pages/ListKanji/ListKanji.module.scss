@@ -75,3 +75,50 @@
 .N5.active {
   background-color: #6a4c93;
 }
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  margin: 3rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 2px 20px #e1e5ee;
+  border-radius: 1rem;
+}
+.page-number,
+.page-btn,
+.page-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.8rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.page-dots {
+  width: 2.6rem;
+  height: 2.6rem;
+  cursor: initial;
+}
+.page-number {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 0.4rem;
+
+  &:hover {
+    color: var(--primary);
+  }
+
+  &.active {
+    color: #ffffff;
+    background: var(--primary);
+    font-weight: 600;
+    border: 1px solid var(--primary);
+  }
+}
+
+.page-btn:hover{
+  color: var(--primary);
+}

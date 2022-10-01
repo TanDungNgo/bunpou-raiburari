@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Kanji
 Route::get('/list-kanji', [KanjiController::class, 'index']);
+Route::get('/list-kanji/{type}/page/{pageNumber}', [KanjiController::class, 'paging']);
 Route::get('/search/q={search}', [KanjiController::class, 'search']);
 Route::get('/kanji/{id}', [KanjiController::class, 'show']);
 Route::get('/list-kanji/{type}', [KanjiController::class, 'searchType']);
@@ -50,6 +51,7 @@ Route::get('/edit-question/{id}', [QuestionController::class, 'edit']);
 Route::put('/update-question/{id}', [QuestionController::class, 'update']);
 Route::get('/question/{id}', [QuestionController::class, 'questionFindId']);
 Route::post('/add-answer/{id}', [QuestionController::class, 'createAnswer']);
+Route::put('/update-answer/{id}', [QuestionController::class, 'updateAnswer']);
 
 // User
 Route::post('/users/login', [UserController::class, 'onLogin']);

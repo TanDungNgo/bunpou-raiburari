@@ -127,4 +127,54 @@ class KanjiController extends Controller
             }
         }
     }
+
+    public function paging($type, $pageNumber)
+    {
+        if ($type == "all") {
+            $kanjis = Kanji::all();
+        } else {
+            $kanjis = DB::table('kanjis')->where('type', $type)->get();
+        }
+        $data = [];
+        if (count($kanjis) > 0) {
+            // so luong item trong 1 page
+            $n = 6;
+            if (count($kanjis) % $n == 0) {
+                $page = count($kanjis) / $n;
+            } else {
+                $page = (int)(count($kanjis) / $n) + 1;
+            }
+            $start = ($pageNumber - 1) * $n;
+            $data = [];
+            if ($pageNumber == $page) {
+                for ($i = $start; $i < count($kanjis); $i++) {
+                    $data[] = [
+                        "id" => $kanjis[$i]->id,
+                        "type" => $kanjis[$i]->type,
+                        "title" => $kanjis[$i]->title,
+                        "mean" => $kanjis[$i]->mean,
+                        "structure" => $kanjis[$i]->structure,
+                        "example" => $kanjis[$i]->example,
+                    ];;
+                }
+            } else if ($pageNumber > $page) {
+                $data = [];
+            } else {
+                for ($i = $start; $i < $start + $n; $i++) {
+                    $data[] = [
+                        "id" => $kanjis[$i]->id,
+                        "type" => $kanjis[$i]->type,
+                        "title" => $kanjis[$i]->title,
+                        "mean" => $kanjis[$i]->mean,
+                        "structure" => $kanjis[$i]->structure,
+                        "example" => $kanjis[$i]->example,
+                    ];
+                }
+            }
+        }
+        return response()->json([
+            'status' => 200,
+            'listKanji' => $data,
+        ]);
+    }
 }

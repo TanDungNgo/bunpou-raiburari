@@ -7,7 +7,7 @@ function ConversationPage() {
     <div className={cx("wrapper")}>
       <img
         className={cx("image")}
-        src="https://pbs.twimg.com/media/EYJPPZxUcAAQ_87.jpg"
+        src="/img/japaneseConversation.jpg"
       ></img>
     </div>
   );

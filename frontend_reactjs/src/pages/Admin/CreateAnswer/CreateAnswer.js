@@ -53,7 +53,7 @@ function CreateAnswer() {
           if (count == 4) {
             swal({
               title: "Success!",
-              text: "Added answers success",
+              text: "Added Answers Successfully",
               icon: "success",
             }).then(() => {
               window.location.reload();

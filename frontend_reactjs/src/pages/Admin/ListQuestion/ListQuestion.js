@@ -115,32 +115,35 @@ function ListQuestion() {
           },
         },
       }).then((value) => {
-        if (value !== null) {
-          // const state = {
-          //   text: questionText,
-          // };
-          // request.put(`update-question/${id}`, state).then((res) => {
-          //   if (res.data.status === 200) {
-          //     swal({
-          //       title: "Success!",
-          //       text: res.data.message,
-          //       icon: "success",
-          //     }).then(() => {
-          //       window.location.reload();
-          //     });
-          //   } else if (res.data.validate) {
-          //     swal({
-          //       title: "Notification!",
-          //       text: res.data.message,
-          //       icon: "info",
-          //     });
-          //   } else {
-          //     swal({
-          //       title: "Error!",
-          //       icon: "error",
-          //     });
-          //   }
-          // });
+        if (value != null) {
+          if (value != "") {
+            const state = {
+              text: value,
+            };
+            request.put(`update-question/${id}`, state).then((res) => {
+              if (res.data.status === 200) {
+                swal({
+                  title: "Success!",
+                  text: res.data.message,
+                  icon: "success",
+                }).then(() => {
+                  window.location.reload();
+                });
+              }
+              // else if (res.data.validate) {
+              //   swal({
+              //     title: "Notification!",
+              //     text: res.data.message,
+              //     icon: "info",
+              //   });
+              // } else {
+              //   swal({
+              //     title: "Error!",
+              //     icon: "error",
+              //   });
+              // }
+            });
+          }
         }
       });
     });
@@ -153,7 +156,10 @@ function ListQuestion() {
           <div className={cx("col1")}>{item.id}</div>
           <div className={cx("col2")}>{item.text}</div>
           <div className={cx("col3")}>
-            <Link className={cx("btn-action", "view")} to={`/createAnswer/${item.id}`}>
+            <Link
+              className={cx("btn-action", "view")}
+              to={`/createAnswer/${item.id}`}
+            >
               <FontAwesomeIcon icon={faEye} />
             </Link>
             <button
