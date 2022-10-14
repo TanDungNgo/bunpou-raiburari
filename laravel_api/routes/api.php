@@ -54,8 +54,11 @@ Route::post('/add-answer/{id}', [QuestionController::class, 'createAnswer']);
 Route::put('/update-answer/{id}', [QuestionController::class, 'updateAnswer']);
 
 // User
-Route::post('/users/login', [UserController::class, 'onLogin']);
-Route::post('/users/register', [UserController::class, 'register']);
+Route::post('/user/login', [UserController::class, 'login']);
+Route::post('/user/register', [UserController::class, 'register']);
+Route::group(['middleware' => 'api'], function () {
+    Route::post('/user', [UserController::class, 'me']);
+});
 
 // Bookmark
 Route::get('/bookmarked/{id}', [BookmarkController::class, 'index']);

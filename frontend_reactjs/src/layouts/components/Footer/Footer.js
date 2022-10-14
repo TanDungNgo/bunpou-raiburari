@@ -10,8 +10,8 @@ function Footer() {
     <div className={cx("footer")}>
       <div>
         <h4>
-          Nếu các bạn có gì thắc mắc thì liên hệ mình qua những mạng xã hội sau
-          đây nhé!
+          {/* Nếu các bạn có gì thắc mắc thì liên hệ mình qua những mạng xã hội sau
+          đây nhé! */}
         </h4>
         <div className={cx("social")}>
           <div className={cx("text")}>

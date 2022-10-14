@@ -2,53 +2,54 @@ import classNames from "classnames/bind";
 import styles from "./Kanji.module.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import request from "~/utils/request";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { bookmark, unbookmark } from "~/services/bookmarkedService";
+import RequestHttp from "~/utils/request";
+import { useSelector } from "react-redux";
 const cx = classNames.bind(styles);
 
 function Kanji() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const { request } = RequestHttp();
+  const currentUser = useSelector((state) => state.auth.login.currentUser);
   const { id } = useParams();
   const [kanji, setKanji] = useState();
   const [checkBookmark, setCheckBookmark] = useState(false);
   const [idBookmark, setIdBookmark] = useState();
-
   useEffect(() => {
     request.get(`kanji/${id}`).then((res) => {
       setKanji(res.data.kanji);
     });
   }, []);
 
-  useEffect(() => {
-    request.get(`bookmarkKanjis/${currentUser.id}`).then((res) => {
-      for (var i = 0; i < res.data.bookmarkedKanjis.length; i++) {
-        if (id == res.data.bookmarkedKanjis[i].kanji_id) {
-          setCheckBookmark(true);
-          setIdBookmark(res.data.bookmarkedKanjis[i].id);
-          break;
-        }
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   request.get(`bookmarkKanjis/${currentUser.id}`).then((res) => {
+  //     for (var i = 0; i < res.data.bookmarkedKanjis.length; i++) {
+  //       if (id == res.data.bookmarkedKanjis[i].kanji_id) {
+  //         setCheckBookmark(true);
+  //         setIdBookmark(res.data.bookmarkedKanjis[i].id);
+  //         break;
+  //       }
+  //     }
+  //   });
+  // }, []);
 
-  const handleBookmark = () => {
-    if (checkBookmark) {
-      const iconStar = document.getElementsByClassName(cx("icon", "active"));
-      iconStar[0].classList.remove(cx("active"));
-      setCheckBookmark(false);
-      unbookmark(idBookmark);
-    } else {
-      const iconStar = document.getElementsByClassName(cx("icon"));
-      iconStar[0].classList.add(cx("active"));
-      setCheckBookmark(true);
-      const formData = new FormData();
-      formData.append("user_id", currentUser.id);
-      formData.append("kanji_id", id);
-      bookmark(formData);
-    }
-  };
+  // const handleBookmark = () => {
+  //   if (checkBookmark) {
+  //     const iconStar = document.getElementsByClassName(cx("icon", "active"));
+  //     iconStar[0].classList.remove(cx("active"));
+  //     setCheckBookmark(false);
+  //     unbookmark(idBookmark);
+  //   } else {
+  //     const iconStar = document.getElementsByClassName(cx("icon"));
+  //     iconStar[0].classList.add(cx("active"));
+  //     setCheckBookmark(true);
+  //     const formData = new FormData();
+  //     formData.append("user_id", currentUser.id);
+  //     formData.append("kanji_id", id);
+  //     bookmark(formData);
+  //   }
+  // };
   const renderExample = kanji?.example?.split(";").map((item, index) => {
     return <p key={index}>{item}</p>;
   });
@@ -57,7 +58,7 @@ function Kanji() {
       {kanji ? (
         <div className={cx("card")}>
           <div className={cx("card-bookmark", `${kanji.type}`)}>
-            <button className={cx("btn-bookmark")} onClick={handleBookmark}>
+            <button className={cx("btn-bookmark")}>
               {checkBookmark ? (
                 <FontAwesomeIcon
                   icon={faStar}

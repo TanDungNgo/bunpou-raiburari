@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
-import * as request from "~/utils/request";
 import CardGrammar from "~/components/CardGrammar/CardGrammar";
 import styles from "./ListGrammar.module.scss";
+import RequestHttp from "~/utils/request";
 const cx = classNames.bind(styles);
 
 function ListGrammar() {
+  const {request} = RequestHttp();
   const [listGrammar, setListGrammar] = useState([]);
   const [listType, setListType] = useState(["N5", "N4", "N3", "N2", "N1"]);
   const [type, setType] = useState("All");
   useEffect(() => {
     request.get("list-grammar").then((res) => {
-      setListGrammar(res.listGrammar);
+      setListGrammar(res.data.listGrammar);
     });
   }, []);
   const renderCard = () => {
@@ -34,12 +35,12 @@ function ListGrammar() {
     }
     setType($type);
     request.get(`list-grammar/${$type}`).then((res) => {
-      setListGrammar(res.listGrammar);
+      setListGrammar(res.data.listGrammar);
     });
   };
   const handleGetAll = () => {
     request.get("list-grammar").then((res) => {
-      setListGrammar(res.listGrammar);
+      setListGrammar(res.data.listGrammar);
     });
     if (type != "All") {
       const btnactive = document.getElementsByClassName(

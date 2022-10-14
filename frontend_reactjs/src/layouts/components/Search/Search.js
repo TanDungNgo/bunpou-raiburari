@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import classNames from "classnames/bind";
-import * as request from "~/utils/request";
-import * as searchServices from "~/services/searchService";
 import styles from "./Search.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
@@ -13,9 +11,11 @@ import {
   faSpinner,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import RequestHttp from "~/utils/request";
 
 const cx = classNames.bind(styles);
 function Search() {
+  const { request } = RequestHttp();
   const [searchValue, setSearchValue] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(true);
@@ -29,11 +29,15 @@ function Search() {
       setSearchResult([]);
       return;
     }
-
     const fetchApi = async () => {
       setLoading(true);
-      const result = await searchServices.search(debouncedValue);
-      setSearchResult(result);
+      try {
+        await request.get(`search/q=${debouncedValue}`).then((res) => {
+          setSearchResult(res.data.listKanji);
+        });
+      } catch (error) {
+        console.log(error);
+      }
       setLoading(false);
     };
     fetchApi();

@@ -33,11 +33,11 @@ function Sidebar() {
             to={config.routes.listGrammar}
             icon={<FontAwesomeIcon icon={faBook} />}
           ></MenuItem>
-          <MenuItem
+          {/* <MenuItem
             title="Bookmark"
             to={config.routes.bookmark}
             icon={<FontAwesomeIcon icon={faBookBookmark} />}
-          ></MenuItem>
+          ></MenuItem> */}
           <MenuItem
             title="Conversation"
             to={config.routes.conservation}

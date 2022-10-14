@@ -1,7 +1,8 @@
-import * as request from "~/utils/request";
+import RequestHttp, * as request from "~/utils/request";
 import swal from "sweetalert";
 
 export const signup = async (formData) => {
+  const {request} = RequestHttp();
   try {
     const res = await request.post(`/users/register`, formData);
     if (res.status == 200) {

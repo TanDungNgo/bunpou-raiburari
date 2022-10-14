@@ -19,56 +19,56 @@ import "tippy.js/dist/tippy.css";
 import config from "~/config";
 import Button from "~/components/Button/Button";
 import Menu from "~/components/Popper/Menu/Menu";
-import { UploadIcon } from "~/components/Icons/Icons";
 import Image from "~/components/Image/Image";
 import Search from "../Search/Search";
-import { logout } from "~/services/userService";
+import UserService, { logout } from "~/services/userService";
+import RequestHttp from "~/utils/request";
 
 const cx = classNames.bind(styles);
 
-const MENU_ITEMS = [
-  {
-    icon: <FontAwesomeIcon icon={faLanguage} />,
-    title: "English",
-    children: {
-      title: "Languages",
-      data: [
-        {
-          code: "en",
-          title: "English",
-        },
-        {
-          code: "vi",
-          title: "Tiếng Việt",
-        },
-        {
-          code: "ja",
-          title: "日本語",
-        },
-      ],
-    },
-  },
-  {
-    icon: <FontAwesomeIcon icon={faComments} />,
-    title: "Feedback and help",
-    to: "/feedback",
-  },
-];
-
 function Header() {
-  const navigate = useNavigate();
-  // const currentUser = useSelector((state) => state.auth.login.currentUser);
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const { request, token } = RequestHttp();
+  const { logout, fetchUserDetail } = UserService();
+  const currentUser = useSelector((state) => state.auth.login.currentUser);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (token) fetchUserDetail();
+  }, []);
 
   // Handle logic
   const handleMenuChange = (menuItem) => {};
 
   const handleLogout = () => {
-    logout(navigate);
+    logout();
   };
-
+  const guestMenu = [
+    {
+      icon: <FontAwesomeIcon icon={faLanguage} />,
+      title: "English",
+      children: {
+        title: "Languages",
+        data: [
+          {
+            code: "en",
+            title: "English",
+          },
+          {
+            code: "vi",
+            title: "Tiếng Việt",
+          },
+          {
+            code: "ja",
+            title: "日本語",
+          },
+        ],
+      },
+    },
+    {
+      icon: <FontAwesomeIcon icon={faComments} />,
+      title: "Feedback and help",
+      to: "/feedback",
+    },
+  ];
   const userMenu = [
     {
       icon: <FontAwesomeIcon icon={faIdCard} />,
@@ -80,7 +80,7 @@ function Header() {
       title: "Setting",
       to: "/setting",
     },
-    ...MENU_ITEMS,
+    ...guestMenu,
     {
       icon: <FontAwesomeIcon icon={faSignOut} />,
       title: "Log out",
@@ -98,18 +98,11 @@ function Header() {
         <Search />
         <div className={cx("actions")}>
           {currentUser ? (
-            <>
-              {/* <Tippy delay={[0, 200]} content="Upload" placement="bottom">
-                <button className={cx("action-btn")}>
-                  <UploadIcon />
-                </button>
-              </Tippy> */}
-              <Tippy delay={[0, 200]} content="Username" placement="bottom">
-                <p>
-                  <span>Hi, {currentUser.username} </span>
-                </p>
-              </Tippy>
-            </>
+            <Tippy delay={[0, 200]} content="Username" placement="bottom">
+              <p>
+                <span>Hi, {currentUser.username} </span>
+              </p>
+            </Tippy>
           ) : (
             <>
               <Button outline> Register</Button>
@@ -118,25 +111,24 @@ function Header() {
               </Button>
             </>
           )}
-          <Menu
-            items={currentUser ? userMenu : MENU_ITEMS}
-            onChange={handleMenuChange}
-          >
-            {currentUser ? (
-              <div>
-                <Image
-                  src={currentUser.avatar}
-                  className={cx("user-avatar")}
-                  alt="avatar"
-                  fallback="img/user.png"
-                />
-              </div>
-            ) : (
-              <button className={cx("more-btn")}>
-                <FontAwesomeIcon icon={faEllipsisVertical} />
-              </button>
-            )}
-          </Menu>
+          {currentUser ? (
+            <Menu items={userMenu} onChange={handleMenuChange}>
+              <Image
+                src={currentUser.avatar}
+                className={cx("user-avatar")}
+                alt="avatar"
+                fallback="img/user.png"
+              />
+            </Menu>
+          ) : (
+            <>
+              <Menu items={guestMenu} onChange={handleMenuChange}>
+                <button className={cx("more-btn")}>
+                  <FontAwesomeIcon icon={faEllipsisVertical} />
+                </button>
+              </Menu>
+            </>
+          )}
         </div>
       </div>
     </header>

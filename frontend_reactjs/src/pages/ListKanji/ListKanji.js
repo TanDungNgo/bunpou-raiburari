@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
-import * as request from "~/utils/request";
+import RequestHttp from "~/utils/request";
 import CardKanji from "~/components/CardKanji/CardKanji";
 import styles from "./ListKanji.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +11,7 @@ import {
 const cx = classNames.bind(styles);
 
 function ListKanji() {
+  const {request} = RequestHttp();
   const [listKanji, setListKanji] = useState([]);
   const [listType, setListType] = useState(["N5", "N4", "N3", "N2", "N1"]);
   const [type, setType] = useState("All");
@@ -18,7 +19,7 @@ function ListKanji() {
   const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
     request.get(`list-kanji/all/page/${currentPage}`).then((res) => {
-      setListKanji(res.listKanji);
+      setListKanji(res.data.listKanji);
     });
   }, []);
   const renderCard = () => {
@@ -41,13 +42,13 @@ function ListKanji() {
     }
     setType($type);
     request.get(`list-kanji/${$type}`).then((res) => {
-      setListKanji(res.listKanji);
+      setListKanji(res.data.listKanji);
     });
   };
 
   const handleGetAll = () => {
     request.get("list-kanji").then((res) => {
-      setListKanji(res.listKanji);
+      setListKanji(res.data.listKanji);
     });
     if (type != "All") {
       const btnactive = document.getElementsByClassName(

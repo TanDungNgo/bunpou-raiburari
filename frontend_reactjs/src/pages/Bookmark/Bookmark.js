@@ -3,14 +3,16 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import classNames from "classnames/bind";
 import styles from "./Bookmark.module.scss";
-import * as request from "~/utils/request";
+import RequestHttp, * as request from "~/utils/request";
 import CardGrammar from "~/components/CardGrammar/CardGrammar";
 import CardKanji from "~/components/CardKanji/CardKanji";
+import { useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
 
 function Bookmark() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const { request } = RequestHttp();
+  const currentUser = useSelector((state) => state.auth.login.currentUser);
   const [listKanji, setListKanji] = useState([]);
   const [listGrammar, setListGrammar] = useState([]);
   const navigate = useNavigate();
@@ -26,8 +28,8 @@ function Bookmark() {
       });
     } else {
       request.get(`bookmarked/${currentUser.id}`).then((res) => {
-        setListKanji(res.listKanji);
-        setListGrammar(res.listGrammar);
+        setListKanji(res.data.listKanji);
+        setListGrammar(res.data.listGrammar);
       });
     }
   }, []);

@@ -1,8 +1,9 @@
-import * as request from "~/utils/request";
+import RequestHttp, * as request from "~/utils/request";
 import swal from "sweetalert";
 import { useState } from "react";
 
 export const createCardKanji = async (formData) => {
+  const {request} = RequestHttp();
   try {
     const res = await request.post("/add-kanji", formData);
     if (res.status == 200) {
@@ -26,6 +27,7 @@ export const createCardKanji = async (formData) => {
 };
 
 export const createCardGrammar = async (formData) => {
+  const {request} = RequestHttp();
   try {
     const res = await request.post("/add-grammar", formData);
     if (res.status == 200) {

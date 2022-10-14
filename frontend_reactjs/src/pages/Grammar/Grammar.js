@@ -5,9 +5,13 @@ import { useParams } from "react-router-dom";
 import request from "~/utils/request";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import RequestHttp from "~/utils/request";
+import { useSelector } from "react-redux";
 const cx = classNames.bind(styles);
 
 function Grammar() {
+  const { request } = RequestHttp();
+  const currentUser = useSelector((state) => state.auth.login.currentUser);
   const { id } = useParams();
   const [grammar, setGrammar] = useState();
   useEffect(() => {

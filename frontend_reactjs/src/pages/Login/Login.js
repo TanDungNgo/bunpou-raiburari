@@ -13,14 +13,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
-import * as request from "~/utils/request";
-import { login } from "~/services/userService";
+import RequestHttp, * as request from "~/utils/request";
+import UserService, { login } from "~/services/userService";
 
 const cx = classNames.bind(styles);
 
 function Login() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const {request, setToken} = RequestHttp();
+  const { login } = UserService();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const validate_err = useSelector((state) => state.auth.login.validate_err);
@@ -29,7 +29,7 @@ function Login() {
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
-    login(formData, dispatch, navigate);
+    login(formData);
   };
 
   const [checkClickBtnSignup, setCheckClickBtnSignup] = useState(false);

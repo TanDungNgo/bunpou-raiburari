@@ -10,16 +10,16 @@ import {
   faCrown,
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "~/components/Button/Button";
-import * as request from "~/utils/request";
+import RequestHttp, * as request from "~/utils/request";
 import swal from "sweetalert";
 
 const cx = classNames.bind(styles);
 
 function Quiz() {
+  const {request} = RequestHttp();
   const { type } = useParams();
   const navigate = useNavigate();
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  // const currentUser = useSelector((state) => state.auth.login.currentUser);
+  const currentUser = useSelector((state) => state.auth.login.currentUser);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [checkSelected, setCheckSelected] = useState(false);
   const [score, setScore] = useState(0);
@@ -36,8 +36,7 @@ function Quiz() {
 
   useEffect(() => {
     request.get(`questions/${type}`).then((res) => {
-      console.log(res);
-      setQuestions(res.questions);
+      setQuestions(res.data.questions);
     });
   }, []);
   const Select = (isCorrect, key) => {

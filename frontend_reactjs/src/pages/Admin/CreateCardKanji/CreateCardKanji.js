@@ -7,11 +7,14 @@ import classNames from "classnames/bind";
 import styles from "./CreateCardKanji.module.scss";
 import Button from "~/components/Button/Button";
 import { createCardKanji } from "~/services/createService";
+import { useSelector } from "react-redux";
+import RequestHttp from "~/utils/request";
+import swal from "sweetalert";
 const cx = classNames.bind(styles);
 
-
 function CreateCardKanji() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const { request } = RequestHttp();
+  const currentUser = useSelector((state) => state.auth.login.currentUser);
   const [listType, setListType] = useState(["N5", "N4", "N3", "N2", "N1"]);
   const [type, setType] = useState("N5");
   const [title, setTitle] = useState("");
@@ -40,7 +43,29 @@ function CreateCardKanji() {
     formData.append("structure", structure);
     formData.append("example", example);
     formData.append("user_id", currentUser.id);
-    createCardKanji(formData);
+
+    try {
+      request.post("/add-kanji", formData).then((res) => {
+        if (res.data.status == 200) {
+          swal({
+            title: "Success!",
+            text: res.message,
+            icon: "success",
+          }).then(() => {
+            window.location.reload();
+          });
+        } else {
+          swal({
+            title: "Error!",
+            // text: "",
+            icon: "error",
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    // createCardKanji(formData);
   };
 
   return (
