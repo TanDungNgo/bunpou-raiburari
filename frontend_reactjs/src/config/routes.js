@@ -16,6 +16,7 @@ const routes = {
   quiz: "/quiz/:type",
   listQuestion: "/listQuestion",
   createAnswer: "/createAnswer/:id",
+  flashCard: "/flashcard"
 };
 
 export default routes;

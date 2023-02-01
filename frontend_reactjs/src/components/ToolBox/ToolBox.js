@@ -1,4 +1,13 @@
-import { faCirclePlus, faList } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCirclePlus,
+  faCreditCard,
+  faIdCard,
+  faIdCardAlt,
+  faIdCardClip,
+  faList,
+  faSdCard,
+  faSimCard,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
@@ -31,6 +40,13 @@ function ToolBox() {
             icon={faList}
           ></FontAwesomeIcon>
           <h4> List Question</h4>
+        </Link>
+        <Link className={cx("btn")} to={config.routes.flashCard}>
+          <FontAwesomeIcon
+            className={cx("icon")}
+            icon={faCreditCard}
+          ></FontAwesomeIcon>
+          <h4> FlashCards</h4>
         </Link>
       </div>
     </div>

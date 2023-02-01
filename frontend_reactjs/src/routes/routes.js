@@ -19,6 +19,7 @@ import EditCardGrammar from "~/pages/Admin/EditCardGrammar/EditCardGrammar";
 import EditCardKanji from "~/pages/Admin/EditCardKanji/EditCardKanji";
 import CreateAnswer from "~/pages/Admin/CreateAnswer/CreateAnswer";
 import ListQuestion from "~/pages/Admin/ListQuestion/ListQuestion";
+import FlashCards from "~/components/FlashCards/FlashCards";
 
 // Public routes
 const publicRoutes = [
@@ -65,6 +66,11 @@ const publicRoutes = [
   {
     path: config.routes.createAnswer,
     component: CreateAnswer,
+    layout: SecondLayout,
+  },
+  {
+    path: config.routes.flashCard,
+    component: FlashCards,
     layout: SecondLayout,
   },
 ];

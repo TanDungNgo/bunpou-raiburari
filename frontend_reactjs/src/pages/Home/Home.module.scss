@@ -1,4 +1,7 @@
-.wrapper {
+.wrapper{
+  display: flex;
+}
+.card {
   padding: 10px;
   margin: 20px;
   height: auto;
@@ -6,6 +9,7 @@
   box-shadow: 0 2px 20px #e1e5ee;
   border-radius: 1rem;
   border: 0.1rem solid var(--primary);
+  width: 400px;
 }
 
 .image {
